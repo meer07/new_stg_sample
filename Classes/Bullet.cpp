@@ -29,17 +29,21 @@ Bullet* Bullet::create(const float param[], std::string fileName)
     return NULL;
 }
 
-void Bullet::Move(){
+void Bullet::Move()
+{
     MoveBase();
-    //Collision();
+    Collision();
 }
 
-void Bullet::Collision(){
+void Bullet::Collision()
+{
     Rect bulletrect = this->boundingBox();
     Rect playerrect = TaskManager::getInstance().player->boundingBox();
     
-    if(bulletrect.intersectsRect(playerrect)){
+    if(bulletrect.intersectsRect(playerrect))
+    {
         TaskManager::getInstance().player->isAlive = false;
         this->isAlive = false;
+        std::cout << "Miss!!" << std::endl;
     }
 }

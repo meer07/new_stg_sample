@@ -10,6 +10,7 @@
 #define __Getsuyoubi__Bullet__
 
 #include <stdio.h>
+#include <iostream>
 #include "Mover.h"
 using namespace cocos2d;
 

@@ -29,18 +29,21 @@ PlayerBullet* PlayerBullet::create(float speed, float speedRate, float angle, st
     return NULL;
 }
 
-void PlayerBullet::Move(){
+void PlayerBullet::Move()
+{
     MoveBase();
     Collision();
 }
 
-void PlayerBullet::Collision(){
-    if (TaskManager::getInstance().enemyManager.size() > 0) {
+void PlayerBullet::Collision()
+{
+    if (TaskManager::getInstance().enemyManager.size() > 0)
+    {
         TaskManager::getInstance().BulletCollistion(this);
     }
-    
 }
 
-PlayerBullet::~PlayerBullet(){
+PlayerBullet::~PlayerBullet()
+{
     std::cout << "delete" << std::endl;
 }

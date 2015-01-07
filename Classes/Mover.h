@@ -10,9 +10,11 @@
 #define __Getsuyoubi__Mover__
 
 #include <stdio.h>
+#include <math.h>
 using namespace cocos2d;
 
-class Mover : public Sprite{
+class Mover : public Sprite
+{
 public:
     float speed;
     float speedRate;
@@ -22,6 +24,7 @@ public:
     //Layer *sceneLayer;
     
     // 仮想メソッド
+    virtual void MovePattern(){};
     virtual void Move(){};
     virtual void Collision(){};
     

@@ -28,25 +28,33 @@ bool HelloWorld::init()
     
     Size windowSize = Director::getInstance()->getWinSize();
     TaskManager::getInstance().sceneLayer = this;
-    //PlayerSet(windowSize);
+    PlayerSet(windowSize);
     
-    float param[] = {1,1,-90};
-    Enemy01 *enemy = Enemy01::create(param, this);
-    enemy->setPosition(enemy->getTextureRect().size.width/2+100, enemy->getTextureRect().size.height/2+100);
+    float param[] = {1,1,270,0};
+    Enemy01 *enemy = Enemy01::create(param, "test_enemy.png");
+    enemy->setPosition(enemy->getTextureRect().size.width/2+500, windowSize.height - enemy->getTextureRect().size.height/2);
     TaskManager::getInstance().AddEnemyTask(*enemy);
 
+    param[0] = 1;
+    param[2] = 180;
+    param[3] = 20;
+    
+    
     this->scheduleUpdate();
     
     return true;
 }
 
-void HelloWorld::update(float frame){
-    //TaskManager::getInstance().player->Move();
+void HelloWorld::update(float frame)
+{
+    TaskManager::getInstance().player->Move();
     TaskManager::getInstance().DoTask(TaskManager::getInstance().enemyManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().bulletManager, *this);
+    TaskManager::getInstance().DoTask(TaskManager::getInstance().playerBulletManager, *this);
 }
 
-void HelloWorld::PlayerSet(Size windowSize){
+void HelloWorld::PlayerSet(Size windowSize)
+{
     TaskManager::getInstance().player = Player::create(this);
     TaskManager::getInstance().player->setPosition(windowSize.width/2, windowSize.height/2);
     this->addChild(TaskManager::getInstance().player);
@@ -61,14 +69,15 @@ void HelloWorld::PlayerSet(Size windowSize){
     dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
-bool HelloWorld::onTouchBegan(Touch *touch, Event *event){
+bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
+{
     
     startPoint = touch->getLocation();
     return true;
 }
 
-void HelloWorld::onTouchMoved(Touch *touch, Event *event){
-    
+void HelloWorld::onTouchMoved(Touch *touch, Event *event)
+{
     Size windowSize = Director::getInstance()->getWinSize();
     
     endPoint = touch->getLocation();
@@ -78,7 +87,8 @@ void HelloWorld::onTouchMoved(Touch *touch, Event *event){
     Point playerPoint = TaskManager::getInstance().player->getPosition();
     Size playerSize = TaskManager::getInstance().player->getTextureRect().size;
     Point newPoint = Vec2(playerPoint.x + tempX, playerPoint.y + tempY);
-    if ((newPoint.x >  playerSize.width/2 && newPoint.y > playerSize.height/2) && (newPoint.x < windowSize.width - playerSize.width/2 && newPoint.y < windowSize.height - playerSize.height/2)) {
+    if ((newPoint.x >  playerSize.width/2 && newPoint.y > playerSize.height/2) && (newPoint.x < windowSize.width - playerSize.width/2 && newPoint.y < windowSize.height - playerSize.height/2))
+    {
         TaskManager::getInstance().player->setPosition(newPoint);
         startPoint = endPoint;
     }

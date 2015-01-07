@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "Enemy01.h"
+#include "Enemy02.h"
 #include "TaskManager.h"
 
 class HelloWorld : public cocos2d::Layer

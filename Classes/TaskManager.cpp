@@ -16,14 +16,15 @@ TaskManager& TaskManager::getInstance(){
 
 TaskManager::TaskManager(){
     // あらかじめメモリ領域を確保する
+    playerBulletManager.reserve(100);
     enemyManager.reserve(100);
-    bulletManager.reserve(500);
+    bulletManager.reserve(200);
 }
 
-void TaskManager::AddBulletTask(Mover *bullet, Point playerPoint){
+void TaskManager::AddBulletTask(std::vector<Mover *> &list, Mover *bullet, Point playerPoint){
     sceneLayer->addChild(bullet);
     bullet->cocos2d::Node::setPosition(playerPoint);
-    bulletManager.push_back(bullet);
+    bulletManager.push_back(std::move(bullet));
 }
 
 void TaskManager::AddEnemyTask(Mover &enemy){
@@ -35,13 +36,12 @@ void TaskManager::AddEnemyTask(Mover &enemy){
 void TaskManager::DoTask(std::vector<Mover *> &list, Layer &sceneLayer)
 {
     std::vector<Mover *>::iterator i;
-    for (i = list.begin(); i != list.end(); ++i)
+    for (i = list.begin(); i != list.end();)
     {
         // そもそもリストが空のときループを抜ける
         if (list.empty()) {
             break;
         }
-        
         if ((*i)->isAlive == false)
         {
             sceneLayer.removeChild(*i);
@@ -50,9 +50,9 @@ void TaskManager::DoTask(std::vector<Mover *> &list, Layer &sceneLayer)
         else
         {
             (*i)->Move();
+            i++; // eraseしないときだけインクリメントする
         }
     }
-    //std::cout << list.size() << std::endl;
 }
 
 void TaskManager::BulletCollistion(Mover *bullet){
@@ -62,7 +62,8 @@ void TaskManager::BulletCollistion(Mover *bullet){
         Rect enemyrect = (*i)->boundingBox();
         
         // 自機の弾かつ敵と衝突している時、生存フラグを下ろす。
-        if ((*i)->getTag() == 1 && bulletrect.intersectsRect(enemyrect)) {
+        if ((*i)->getTag() == 4 && bulletrect.intersectsRect(enemyrect)) {
+            std::cout << "Hitt!!" << std::endl;
             (*i)->isAlive = false;
             bullet->isAlive = false;
         }

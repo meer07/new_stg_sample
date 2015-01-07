@@ -15,9 +15,10 @@
 
 using namespace cocos2d;
 
-class PlayerBullet : public Mover {
+class PlayerBullet : public Mover
+{
 public:
-    static PlayerBullet* create(float speed,float speedRate,float angle,std::string fileName);
+    static PlayerBullet* create(float speed, float speedRate, float angle,std::string fileName);
     void Move();
     void Collision();
     ~PlayerBullet();

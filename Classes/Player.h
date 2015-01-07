@@ -16,7 +16,8 @@
 
 using namespace cocos2d;
 
-class Player : public Mover{
+class Player : public Mover
+{
 public:
     float shotSpeed;
     float shotSpeedRate;

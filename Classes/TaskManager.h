@@ -25,10 +25,11 @@ public:
     
     Mover *player;
     Layer *sceneLayer;
+    std::vector<Mover *> playerBulletManager;
     std::vector<Mover *> bulletManager;
     std::vector<Mover *> enemyManager;
     
-    void AddBulletTask(Mover *bullet, Point playerPoint);
+    void AddBulletTask(std::vector<Mover *> &list, Mover *bullet, Point playerPoint);
     void AddEnemyTask(Mover &enemy);
     void DoTask(std::vector<Mover *> &list, Layer &sceneLayer);
     void BulletCollistion(Mover *bullet);

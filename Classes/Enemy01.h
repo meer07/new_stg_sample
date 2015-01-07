@@ -10,18 +10,17 @@
 #define __Getsuyoubi__Enemy01__
 
 #include <stdio.h>
-#include "Mover.h"
+#include "Enemy.h"
 #include "Bullet.h"
 #include "TaskManager.h"
 
-class Enemy01 : public Mover{
+class Enemy01 : public Enemy
+{
 public:
-    static Enemy01* create(const float param[], Layer *sceneLayer_);
+    static Enemy01* create(const float param[], std::string fileName);
+    void MovePattern();
     void Move();
     void Shot();
-private:
-    float shotParam[3] = {5, 1, -90};
-    float shotDelay;
 };
 
 #endif /* defined(__Getsuyoubi__Enemy01__) */
