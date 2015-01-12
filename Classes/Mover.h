@@ -16,10 +16,10 @@ using namespace cocos2d;
 class Mover : public Sprite
 {
 public:
+    int hitpoint;
     float speed;
     float speedRate;
     float angle;
-    int placeID;
     bool isAlive;
     //Layer *sceneLayer;
     

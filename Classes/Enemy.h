@@ -18,10 +18,11 @@ class Enemy : public Mover
 {
 protected:
     const float oneSec = 60; // 1秒60フレーム
+    int angleRate;
     int shotLimit;
-    float shotParam[3] = {0, 0, 0};
-    float shotDelay;
-    float moveDelay;
+    float shotDelay, shotDelayTmp;
+    float moveLimit;
+    float moveDelay, moveDelayTmp;
 };
 
 #endif /* defined(__Getsuyoubi__Enemy__) */

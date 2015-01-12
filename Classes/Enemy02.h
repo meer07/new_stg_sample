@@ -17,12 +17,10 @@
 class Enemy02 : public Enemy
 {
 public:
-    static Enemy02* create(const float param[], std::string fileName);
+    static Enemy02* create(const float enemyParam[], const float shotParam[],std::string fileName);
     void MovePattern();
     void Move();
     void Shot();
-private:
-    int angleRate;
 };
 
 #endif /* defined(__Getsuyoubi__Enemy02__) */

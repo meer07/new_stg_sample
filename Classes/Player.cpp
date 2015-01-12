@@ -12,6 +12,7 @@ Player* Player::create(Layer *sceneLayer_)
 {
     Player* player = new Player();
     
+    player->hitpoint = 3;
     player->shotSpeed = 10;
     player->shotSpeedRate = 1;
     player->shotAngle = 90;

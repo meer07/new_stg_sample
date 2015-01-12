@@ -3,17 +3,14 @@
 
 #include "cocos2d.h"
 #include "Player.h"
-#include "Enemy01.h"
-#include "Enemy02.h"
+#include "GameScene.h"
 #include "TaskManager.h"
 
 class HelloWorld : public cocos2d::Layer
 {
 public:
-    // there's no 'id' in cpp, so we recommend returning the class instance pointer
+    Size windowSize;
     static cocos2d::Scene* createScene();
-    
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
     
     void update(float frame);
@@ -25,6 +22,8 @@ public:
     CREATE_FUNC(HelloWorld);
     
 private:
+    int nowStage = 1;
+    GameScene *gameScene;
     Point startPoint, endPoint;
 };
 

@@ -44,6 +44,6 @@ void Bullet::Collision()
     {
         TaskManager::getInstance().player->isAlive = false;
         this->isAlive = false;
-        std::cout << "Miss!!" << std::endl;
+        //std::cout << "Miss!!" << std::endl;
     }
 }

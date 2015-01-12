@@ -26,19 +26,11 @@ bool HelloWorld::init()
         return false;
     }
     
-    Size windowSize = Director::getInstance()->getWinSize();
+    windowSize = Director::getInstance()->getWinSize();
     TaskManager::getInstance().sceneLayer = this;
     PlayerSet(windowSize);
     
-    float param[] = {1,1,270,0};
-    Enemy01 *enemy = Enemy01::create(param, "test_enemy.png");
-    enemy->setPosition(enemy->getTextureRect().size.width/2+500, windowSize.height - enemy->getTextureRect().size.height/2);
-    TaskManager::getInstance().AddEnemyTask(*enemy);
-
-    param[0] = 1;
-    param[2] = 180;
-    param[3] = 20;
-    
+    gameScene = new GameScene();
     
     this->scheduleUpdate();
     
@@ -48,6 +40,16 @@ bool HelloWorld::init()
 void HelloWorld::update(float frame)
 {
     TaskManager::getInstance().player->Move();
+    
+    switch (nowStage) {
+        case 1:
+            gameScene->Scene01(windowSize);
+            break;
+            
+        default:
+            break;
+    }
+    
     TaskManager::getInstance().DoTask(TaskManager::getInstance().enemyManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().bulletManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().playerBulletManager, *this);

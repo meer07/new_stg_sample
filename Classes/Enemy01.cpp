@@ -8,17 +8,23 @@
 
 #include "Enemy01.h"
 
-Enemy01* Enemy01::create(const float param[], std::string fileName)
+Enemy01* Enemy01::create(const float enemyParam[], const float shotParam[],std::string fileName)
 {
     Enemy01 *enemy = new Enemy01();
-    enemy->speed = param[0];
-    enemy->speedRate = param[1];
-    enemy->angle = param[2];
+    // 敵本体のパラメータ
+    enemy->hitpoint = 1;
+    enemy->speed = enemyParam[0];
+    enemy->speedRate = enemyParam[1];
+    enemy->angle = enemyParam[2];
+    enemy->angleRate = enemyParam[3];
     enemy->isAlive = true;
-    enemy->shotDelay = 60;
     enemy->setTag(4);
-    enemy->moveDelay = 60;
-    enemy->shotLimit = 3;
+    
+    // ショットのパラメータ
+    enemy->shotDelay = enemy->shotDelayTmp = shotParam[0];
+    enemy->shotLimit = shotParam[1];
+    enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
+    enemy->moveLimit = shotParam[3];
     
     if (enemy && enemy->initWithFile(fileName))
     {
@@ -42,12 +48,10 @@ void Enemy01::Shot()
 {
     if (shotDelay <= 0 && shotLimit > 0)
     {
-        shotParam[0] = 5;
-        shotParam[1] = 1;
-        shotParam[2] = -90;
+        float shotParam[3] = {5, 1, -90};
         
         TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
-        shotDelay = oneSec;
+        shotDelay = shotDelayTmp;
         shotLimit--;
     }
     else

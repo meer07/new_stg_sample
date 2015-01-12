@@ -21,12 +21,14 @@ TaskManager::TaskManager(){
     bulletManager.reserve(200);
 }
 
+// 弾を追加
 void TaskManager::AddBulletTask(std::vector<Mover *> &list, Mover *bullet, Point playerPoint){
     sceneLayer->addChild(bullet);
     bullet->cocos2d::Node::setPosition(playerPoint);
     bulletManager.push_back(std::move(bullet));
 }
 
+// 敵を追加
 void TaskManager::AddEnemyTask(Mover &enemy){
     sceneLayer->addChild(&enemy);
     enemyManager.push_back(&enemy);
@@ -42,6 +44,8 @@ void TaskManager::DoTask(std::vector<Mover *> &list, Layer &sceneLayer)
         if (list.empty()) {
             break;
         }
+        
+        // 生存フラグが負であるとき削除
         if ((*i)->isAlive == false)
         {
             sceneLayer.removeChild(*i);
@@ -61,10 +65,14 @@ void TaskManager::BulletCollistion(Mover *bullet){
         Rect bulletrect = bullet->boundingBox();
         Rect enemyrect = (*i)->boundingBox();
         
-        // 自機の弾かつ敵と衝突している時、生存フラグを下ろす。
+        // 自機の弾と敵との衝突判定
         if ((*i)->getTag() == 4 && bulletrect.intersectsRect(enemyrect)) {
-            std::cout << "Hitt!!" << std::endl;
-            (*i)->isAlive = false;
+            (*i)->hitpoint--;
+            
+            // HPが0の時、生存フラグを下ろす。
+            if ((*i)->hitpoint < 0) {
+                (*i)->isAlive = false;
+            }
             bullet->isAlive = false;
         }
     }
