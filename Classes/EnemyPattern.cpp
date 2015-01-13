@@ -50,6 +50,7 @@ void EnemyPattern::EnemyPattern04(const float enemyParam[], const float shotPara
     TaskManager::getInstance().AddEnemyTask(*enemy2);
 }
 
+// 上から登場(3way)
 void EnemyPattern::EnemyPattern05(const float enemyParam[], const float shotParam[], float makePointX)
 {
     Enemy03 *enemy3 = Enemy03::create(enemyParam, shotParam, "test_enemy.png");

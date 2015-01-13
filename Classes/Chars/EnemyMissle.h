@@ -20,5 +20,7 @@ public:
 
 private:
     int moveDelay;
+    int moveDelayTmp;
+    int moveLimit;
     float angleRange;
 };

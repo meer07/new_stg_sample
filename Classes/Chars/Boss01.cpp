@@ -22,11 +22,11 @@ Boss01* Boss01::create(std::string fileName)
     boss->setTag(4);
     
     // ショットのパラメータ
-    boss->shotDelay = 180;
-    boss->shotDelayTmp = 120;
+    boss->shotDelay = 120;
+    boss->shotDelayTmp = 10;
     boss->shotLimit = 0;
-    boss->moveDelay = 60;
-    boss->moveDelayTmp = 60;
+    boss->moveDelay = 0;
+    boss->moveDelayTmp = 0;
     boss->moveLimit = 60;
     
     boss->moveFlag = true;
@@ -45,14 +45,16 @@ Boss01* Boss01::create(std::string fileName)
 
 void Boss01::Move()
 {
-    MovePattern();
+    Point nowPoint = this->getPosition();
+    //Size size = this->getTextureRect().size;
+    MovePattern(nowPoint);
     MoveBase();
-    Shot();
+    Shot(nowPoint);
 }
 
-void Boss01::MovePattern()
+void Boss01::MovePattern(Point nowPoint)
 {
-    Point nowPoint = this->getPosition();
+    
     if(nowPoint.y < Director::getInstance()->getWinSize().height - 200)
     {
         if (nowPoint.x <= 100)
@@ -76,13 +78,20 @@ void Boss01::MovePattern()
 
 }
 
-void Boss01::Shot()
+void Boss01::Shot(Point nowPoint)
 {
     // ミサイル発射
-    if (shotDelay == shotDelay/2) {
+    if (static_cast<int>(shotDelay) % 30 == 0) {
+        float shotParam[5] = {5, 1, 0, 30, 0};
         
+        for (int i = 0; i < 2; i++) {
+            shotParam[2] = 180 * i;
+            EnemyMissle *missle = EnemyMissle::create(shotParam, "test_enemy.png");
+            missle->setPosition(nowPoint.x, nowPoint.y);
+            TaskManager::getInstance().AddEnemyTask(*missle);
+        }
     }
-    else if(shotDelay <= 0) // メインショット発射
+    else if(static_cast<int>(shotDelay) % 10 == 0) // メインショット発射
     {
         if(shotFlag)
         {
@@ -94,9 +103,9 @@ void Boss01::Shot()
             MainShot(0);
             shotFlag = true;
         }
-        shotDelay = shotDelayTmp;
+        //shotDelay = 0;
     }
-    shotDelay--;
+    shotDelay++;
 }
 
 void Boss01::MainShot(float baseAngle)

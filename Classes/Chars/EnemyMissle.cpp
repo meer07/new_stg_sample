@@ -13,16 +13,18 @@ EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
 {
     EnemyMissle *missle = new EnemyMissle();
     
-    missle->hitpoint = 2;
-    
+    missle->hitpoint = 1;
     missle->speed = param[0];
-    missle->speedRate = param[1];
+    missle->moveLimit = param[1];
+    missle->speedRate = 1;
     missle->angle = param[2];
     missle->isAlive = true;
-    missle->setTag(3);
+    missle->setTag(4);
     
     missle->moveDelay = param[3];
     missle->angleRange = param[4];
+    
+    missle->moveDelayTmp = 1;
     
     
     if (missle && missle->initWithFile(fileName)) {
@@ -45,11 +47,15 @@ void EnemyMissle::Move()
 void EnemyMissle::MovePattern()
 {
     // 自機に向かって回転
-    if (moveDelay) {
+    if (moveDelay < 0 && moveLimit > 0) {
         Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
         Vec2 enemyPosition = this->getPosition();
         float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
-        this->setRotation(bulletAngle);
+        this->setRotation(bulletAngle - angleRange);
+        angle = bulletAngle;
+        
+        moveDelay = moveDelayTmp;
+        moveLimit--;
     }
     else
     {

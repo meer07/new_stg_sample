@@ -39,7 +39,6 @@ Enemy03* Enemy03::create(const float enemyParam[], const float shotParam[],std::
     }
     
     CC_SAFE_DELETE(enemy);
-
     return NULL;
 }
 
@@ -84,12 +83,10 @@ void Enemy03::MovePattern()
         if (flag)
         {
             this->angle = 0;
-            //this->speed = abs(this->speed);
         }
         else
         {
             this->angle = 180;
-            //this->speed = -(this->speed);
         }
     }
 }

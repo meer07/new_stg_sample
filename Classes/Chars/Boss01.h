@@ -17,9 +17,9 @@ class Boss01 : public Enemy
 public:
     
     static Boss01* create(std::string fileName);
-    void MovePattern();
+    void MovePattern(Point nowPoint);
     void Move();
-    void Shot();
+    void Shot(Point nowPoint);
 private:
     bool moveFlag;
     bool shotFlag;
