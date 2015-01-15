@@ -13,7 +13,8 @@ Boss01* Boss01::create(std::string fileName)
 {
     Boss01 *boss = new Boss01();
     
-    boss->hitpoint = 100;
+    boss->hitpoint = 150;
+    boss->score = 1000;
     boss->speed = 3;
     boss->speedRate = 1;
     boss->angle = 270;
@@ -27,7 +28,7 @@ Boss01* Boss01::create(std::string fileName)
     boss->shotLimit = 0;
     boss->moveDelay = 0;
     boss->moveDelayTmp = 0;
-    boss->moveLimit = 60;
+    //boss->moveLimit = 60;
     
     boss->moveFlag = true;
     boss->shotFlag = true;
@@ -45,23 +46,22 @@ Boss01* Boss01::create(std::string fileName)
 
 void Boss01::Move()
 {
-    Point nowPoint = this->getPosition();
-    //Size size = this->getTextureRect().size;
+    cocos2d::Point nowPoint = this->getPosition();
     MovePattern(nowPoint);
     MoveBase();
     Shot(nowPoint);
 }
 
-void Boss01::MovePattern(Point nowPoint)
+void Boss01::MovePattern(cocos2d::Point nowPoint)
 {
     
-    if(nowPoint.y < Director::getInstance()->getWinSize().height - 200)
+    if(nowPoint.y < cocos2d::Director::getInstance()->getWinSize().height - 200)
     {
         if (nowPoint.x <= 100)
         {
             moveFlag = true;
         }
-        else if (nowPoint.x >= Director::getInstance()->getWinSize().width - 100)
+        else if (nowPoint.x >= cocos2d::Director::getInstance()->getWinSize().width - 100)
         {
             moveFlag = false;
         }
@@ -78,15 +78,17 @@ void Boss01::MovePattern(Point nowPoint)
 
 }
 
-void Boss01::Shot(Point nowPoint)
+void Boss01::Shot(cocos2d::Point nowPoint)
 {
     // ミサイル発射
-    if (static_cast<int>(shotDelay) % 30 == 0) {
-        float shotParam[5] = {5, 1, 0, 30, 0};
+    if (static_cast<int>(shotDelay) % 30 == 0)
+    {
+        float shotParam[5] = {5, 2, 0, 30, 0};
         
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; i++)
+        {
             shotParam[2] = 180 * i;
-            EnemyMissle *missle = EnemyMissle::create(shotParam, "test_enemy.png");
+            EnemyMissle *missle = EnemyMissle::create(shotParam, "missle.png");
             missle->setPosition(nowPoint.x, nowPoint.y);
             TaskManager::getInstance().AddEnemyTask(*missle);
         }
@@ -103,7 +105,7 @@ void Boss01::Shot(Point nowPoint)
             MainShot(0);
             shotFlag = true;
         }
-        //shotDelay = 0;
+        
     }
     shotDelay++;
 }

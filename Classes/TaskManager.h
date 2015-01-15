@@ -10,10 +10,7 @@
 #define __Getsuyoubi__TaskManager__
 
 #include <vector>
-#include <iostream>
 #include "Mover.h"
-
-using namespace cocos2d;
 
 class TaskManager {
 public:
@@ -24,14 +21,14 @@ public:
     TaskManager &operator=(const TaskManager &other){}
     
     Mover *player;
-    Layer *sceneLayer;
+    cocos2d::Layer *sceneLayer;
     std::vector<Mover *> playerBulletManager;
     std::vector<Mover *> bulletManager;
     std::vector<Mover *> enemyManager;
     
-    void AddBulletTask(std::vector<Mover *> &list, Mover *bullet, Point playerPoint);
+    void AddBulletTask(std::vector<Mover *> &list, Mover *bullet, cocos2d::Point playerPoint);
     void AddEnemyTask(Mover &enemy);
-    void DoTask(std::vector<Mover *> &list, Layer &sceneLayer);
+    void DoTask(std::vector<Mover *> &list, cocos2d::Layer &sceneLayer);
     void BulletCollistion(Mover *bullet);
 };
 #endif /* defined(__Getsuyoubi__TaskManager__) */

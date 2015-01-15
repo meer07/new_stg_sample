@@ -1,4 +1,6 @@
 #include "HelloWorldScene.h"
+#include "Player.h"
+#include "TaskManager.h"
 
 USING_NS_CC;
 
@@ -31,6 +33,8 @@ bool HelloWorld::init()
     PlayerSet(windowSize);
     
     gameScene = new GameScene();
+    uiManager = new UIManager();
+    uiManager->ShowScore(windowSize, *this);
     
     this->scheduleUpdate();
     
@@ -53,6 +57,7 @@ void HelloWorld::update(float frame)
     TaskManager::getInstance().DoTask(TaskManager::getInstance().enemyManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().bulletManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().playerBulletManager, *this);
+    uiManager->UpDate();
 }
 
 void HelloWorld::PlayerSet(Size windowSize)

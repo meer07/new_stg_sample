@@ -9,7 +9,6 @@
 #ifndef __Getsuyoubi__Boss01__
 #define __Getsuyoubi__Boss01__
 
-#include <stdio.h>
 #include "Enemy.h"
 
 class Boss01 : public Enemy
@@ -17,9 +16,9 @@ class Boss01 : public Enemy
 public:
     
     static Boss01* create(std::string fileName);
-    void MovePattern(Point nowPoint);
+    void MovePattern(cocos2d::Point nowPoint);
     void Move();
-    void Shot(Point nowPoint);
+    void Shot(cocos2d::Point nowPoint);
 private:
     bool moveFlag;
     bool shotFlag;

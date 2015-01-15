@@ -9,10 +9,7 @@
 #ifndef __Getsuyoubi__Bullet__
 #define __Getsuyoubi__Bullet__
 
-#include <stdio.h>
-#include <iostream>
 #include "Mover.h"
-using namespace cocos2d;
 
 class Bullet : public Mover
 {

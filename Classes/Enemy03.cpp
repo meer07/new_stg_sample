@@ -7,6 +7,7 @@
 //
 
 #include "Enemy03.h"
+#include "Bullet.h"
 #include <string.h>
 
 Enemy03* Enemy03::create(const float enemyParam[], const float shotParam[],std::string fileName)
@@ -14,7 +15,8 @@ Enemy03* Enemy03::create(const float enemyParam[], const float shotParam[],std::
     Enemy03 *enemy = new Enemy03();
     
     // 敵本体のパラメータ
-    enemy->hitpoint = 10;
+    enemy->hitpoint = 20;
+    enemy->score = 150;
     enemy->speed = enemyParam[0];
     enemy->speedRate = enemyParam[1];
     enemy->angle = enemyParam[2];
@@ -28,7 +30,7 @@ Enemy03* Enemy03::create(const float enemyParam[], const float shotParam[],std::
     
     // 移動アニメーションのパラメータ
     enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
-    enemy->moveLimit = shotParam[3];
+    //enemy->moveLimit = shotParam[3];
     
     enemy->flag = false;
     
@@ -68,14 +70,14 @@ void Enemy03::Shot()
 
 void Enemy03::MovePattern()
 {
-    Point nowPoint = this->getPosition();
-    if(nowPoint.y < Director::getInstance()->getWinSize().height - 200)
+    cocos2d::Point nowPoint = this->getPosition();
+    if(nowPoint.y < cocos2d::Director::getInstance()->getWinSize().height - 200)
     {
         if (nowPoint.x <= 100)
         {
             flag = true;
         }
-        else if (nowPoint.x >= Director::getInstance()->getWinSize().width - 100)
+        else if (nowPoint.x >= cocos2d::Director::getInstance()->getWinSize().width - 100)
         {
             flag = false;
         }

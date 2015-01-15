@@ -9,10 +9,7 @@
 #ifndef __Getsuyoubi__Enemy02__
 #define __Getsuyoubi__Enemy02__
 
-#include <stdio.h>
 #include "Enemy.h"
-#include "Bullet.h"
-#include "TaskManager.h"
 
 class Enemy02 : public Enemy
 {

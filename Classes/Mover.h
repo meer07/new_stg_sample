@@ -9,13 +9,12 @@
 #ifndef __Getsuyoubi__Mover__
 #define __Getsuyoubi__Mover__
 
-#include <stdio.h>
 #include <math.h>
-using namespace cocos2d;
 
-class Mover : public Sprite
+class Mover : public cocos2d::Sprite
 {
 public:
+    int score;
     int hitpoint;
     float speed;
     float speedRate;

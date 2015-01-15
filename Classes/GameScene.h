@@ -9,8 +9,8 @@
 #ifndef __Getsuyoubi__GameScene__
 #define __Getsuyoubi__GameScene__
 
-#include <stdio.h>
 #include "EnemyPattern.h"
+#include "UIManager.h"
 
 class GameScene {
 public:
@@ -21,6 +21,12 @@ public:
 private:
     float frame;
     EnemyPattern *pattern;
+    UIManager *ui;
+    cocos2d::Label *scoreLabel;
+    
+    void Pattern01(cocos2d::Size windowSize);
+    void Pattern02(cocos2d::Size windowSize);
+    void Pattern03(float pointX);
 };
 
 #endif /* defined(__Getsuyoubi__GameScene__) */

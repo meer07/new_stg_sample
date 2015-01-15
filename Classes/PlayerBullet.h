@@ -9,11 +9,7 @@
 #ifndef __Getsuyoubi__PlayerBullet__
 #define __Getsuyoubi__PlayerBullet__
 
-#include <stdio.h>
 #include "Mover.h"
-#include "TaskManager.h"
-
-using namespace cocos2d;
 
 class PlayerBullet : public Mover
 {

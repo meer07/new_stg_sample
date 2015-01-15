@@ -27,7 +27,7 @@ void EnemyPattern::EnemyPattern02(const float enemyParam[], const float shotPara
 {
     Enemy02 *enemy2 = Enemy02::create(enemyParam, shotParam, "test_enemy.png");
     
-    enemy2->setPosition(Director::getInstance()->getWinSize().width - enemy2->getTextureRect().size.width, makePointY - enemy2->getTextureRect().size.height/2);
+    enemy2->setPosition(cocos2d::Director::getInstance()->getWinSize().width - enemy2->getTextureRect().size.width, makePointY - enemy2->getTextureRect().size.height/2);
     
     TaskManager::getInstance().AddEnemyTask(*enemy2);
 }
@@ -36,7 +36,7 @@ void EnemyPattern::EnemyPattern02(const float enemyParam[], const float shotPara
 void EnemyPattern::EnemyPattern03(const float enemyParam[], const float shotParam[], float makePointX)
 {
     Enemy01 *enemy = Enemy01::create(enemyParam, shotParam, "test_enemy.png");
-    enemy->setPosition(makePointX, Director::getInstance()->getWinSize().height - enemy->getTextureRect().size.height/2);
+    enemy->setPosition(makePointX, cocos2d::Director::getInstance()->getWinSize().height - enemy->getTextureRect().size.height/2);
     
     TaskManager::getInstance().AddEnemyTask(*enemy);
 }
@@ -45,7 +45,7 @@ void EnemyPattern::EnemyPattern03(const float enemyParam[], const float shotPara
 void EnemyPattern::EnemyPattern04(const float enemyParam[], const float shotParam[], float makePointX)
 {
     Enemy02 *enemy2 = Enemy02::create(enemyParam, shotParam, "test_enemy.png");
-    enemy2->setPosition(makePointX, Director::getInstance()->getWinSize().height - enemy2->getTextureRect().size.height/2);
+    enemy2->setPosition(makePointX, cocos2d::Director::getInstance()->getWinSize().height - enemy2->getTextureRect().size.height/2);
     
     TaskManager::getInstance().AddEnemyTask(*enemy2);
 }
@@ -54,7 +54,7 @@ void EnemyPattern::EnemyPattern04(const float enemyParam[], const float shotPara
 void EnemyPattern::EnemyPattern05(const float enemyParam[], const float shotParam[], float makePointX)
 {
     Enemy03 *enemy3 = Enemy03::create(enemyParam, shotParam, "test_enemy.png");
-    enemy3->setPosition(makePointX, Director::getInstance()->getWinSize().height - enemy3->getTextureRect().size.height/2);
+    enemy3->setPosition(makePointX, cocos2d::Director::getInstance()->getWinSize().height - enemy3->getTextureRect().size.height/2);
     
     TaskManager::getInstance().AddEnemyTask(*enemy3);
 }

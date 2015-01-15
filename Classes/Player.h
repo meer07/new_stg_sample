@@ -9,12 +9,7 @@
 #ifndef __Getsuyoubi__Player__
 #define __Getsuyoubi__Player__
 
-#include <stdio.h>
 #include "Mover.h"
-#include "PlayerBullet.h"
-#include "TaskManager.h"
-
-using namespace cocos2d;
 
 class Player : public Mover
 {
@@ -24,7 +19,7 @@ public:
     float shotAngle;
     float shotDelay;
     
-    static Player* create(Layer *sceneLayer_);
+    static Player* create(cocos2d::Layer *sceneLayer_);
     void Move();
     void Shot();
 };

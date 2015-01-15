@@ -8,12 +8,14 @@
 
 #include "EnemyMissle.h"
 #include "TaskManager.h"
+#include <iostream>
 
 EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
 {
     EnemyMissle *missle = new EnemyMissle();
     
     missle->hitpoint = 1;
+    missle->score = 50;
     missle->speed = param[0];
     missle->moveLimit = param[1];
     missle->speedRate = 1;
@@ -26,6 +28,7 @@ EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
     
     missle->moveDelayTmp = 1;
     
+    missle->setRotation(missle->angle);
     
     if (missle && missle->initWithFile(fileName)) {
         missle->autorelease();
@@ -48,10 +51,10 @@ void EnemyMissle::MovePattern()
 {
     // 自機に向かって回転
     if (moveDelay < 0 && moveLimit > 0) {
-        Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
-        Vec2 enemyPosition = this->getPosition();
+        cocos2d::Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
+        cocos2d::Vec2 enemyPosition = this->getPosition();
         float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
-        this->setRotation(bulletAngle - angleRange);
+        this->setRotation(-bulletAngle - angleRange);
         angle = bulletAngle;
         
         moveDelay = moveDelayTmp;
@@ -65,13 +68,12 @@ void EnemyMissle::MovePattern()
 
 void EnemyMissle::Collision()
 {
-    Rect bulletrect = this->boundingBox();
-    Rect playerrect = TaskManager::getInstance().player->boundingBox();
+    cocos2d::Rect bulletrect = this->boundingBox();
+    cocos2d::Rect playerrect = TaskManager::getInstance().player->boundingBox();
     
     if(bulletrect.intersectsRect(playerrect))
     {
         TaskManager::getInstance().player->isAlive = false;
         this->isAlive = false;
-        //std::cout << "Miss!!" << std::endl;
     }
 }

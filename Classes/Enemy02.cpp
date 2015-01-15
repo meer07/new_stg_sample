@@ -7,12 +7,15 @@
 //
 
 #include "Enemy02.h"
+#include "Bullet.h"
+#include "TaskManager.h"
 
 Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std::string fileName){
     Enemy02 *enemy = new Enemy02();
     
     // 敵本体のパラメータ
     enemy->hitpoint = 1;
+    enemy->score = 100;
     enemy->speed = enemyParam[0];
     enemy->speedRate = enemyParam[1];
     enemy->angle = enemyParam[2];
@@ -24,7 +27,7 @@ Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std:
     enemy->shotDelay = enemy->shotDelayTmp = shotParam[0];
     enemy->shotLimit = shotParam[1];
     enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
-    enemy->moveLimit = shotParam[3];
+    //enemy->moveLimit = shotParam[3];
     
     if (enemy && enemy->initWithFile(fileName)) {
         enemy->autorelease();
@@ -45,8 +48,8 @@ void Enemy02::Move(){
 // 自機狙い弾
 void Enemy02::Shot(){
     if (shotDelay <= 0 && shotLimit > 0) {
-        Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
-        Vec2 enemyPosition = this->getPosition();
+        cocos2d::Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
+        cocos2d::Vec2 enemyPosition = this->getPosition();
         float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
         float shotParam[3] = {5, 1, bulletAngle};
         

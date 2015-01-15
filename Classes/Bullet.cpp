@@ -37,8 +37,8 @@ void Bullet::Move()
 
 void Bullet::Collision()
 {
-    Rect bulletrect = this->boundingBox();
-    Rect playerrect = TaskManager::getInstance().player->boundingBox();
+    cocos2d::Rect bulletrect = this->boundingBox();
+    cocos2d::Rect playerrect = TaskManager::getInstance().player->boundingBox();
     
     if(bulletrect.intersectsRect(playerrect))
     {

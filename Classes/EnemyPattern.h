@@ -9,9 +9,6 @@
 #ifndef __Getsuyoubi__EnemyPattern__
 #define __Getsuyoubi__EnemyPattern__
 
-#include <stdio.h>
-
-
 class EnemyPattern
 {
 public:

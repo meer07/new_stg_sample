@@ -7,12 +7,13 @@
 //
 
 #include "Player.h"
+#include "PlayerBullet.h"
+#include "TaskManager.h"
 
-Player* Player::create(Layer *sceneLayer_)
+Player* Player::create(cocos2d::Layer *sceneLayer_)
 {
     Player* player = new Player();
     
-    player->hitpoint = 3;
     player->shotSpeed = 10;
     player->shotSpeedRate = 1;
     player->shotAngle = 90;

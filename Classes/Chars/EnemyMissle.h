@@ -6,10 +6,9 @@
 //
 //
 
-#include <stdio.h>
-#include "Mover.h"
+#include "Enemy.h"
 
-class EnemyMissle : public Mover
+class EnemyMissle : public Enemy
 {
 public:
     static EnemyMissle* create(const float param[], std::string fileName);

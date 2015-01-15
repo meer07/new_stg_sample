@@ -7,14 +7,18 @@
 //
 
 #include "TaskManager.h"
+#include "GameData.h"
+#include <iostream>
 
 // シングルトンで実装
-TaskManager& TaskManager::getInstance(){
+TaskManager& TaskManager::getInstance()
+{
     static TaskManager instance;
     return instance;
 }
 
-TaskManager::TaskManager(){
+TaskManager::TaskManager()
+{
     // あらかじめメモリ領域を確保する
     playerBulletManager.reserve(100);
     enemyManager.reserve(100);
@@ -22,20 +26,22 @@ TaskManager::TaskManager(){
 }
 
 // 弾を追加
-void TaskManager::AddBulletTask(std::vector<Mover *> &list, Mover *bullet, Point playerPoint){
+void TaskManager::AddBulletTask(std::vector<Mover *> &list, Mover *bullet, cocos2d::Point playerPoint)
+{
     sceneLayer->addChild(bullet);
     bullet->cocos2d::Node::setPosition(playerPoint);
     bulletManager.push_back(std::move(bullet));
 }
 
 // 敵を追加
-void TaskManager::AddEnemyTask(Mover &enemy){
+void TaskManager::AddEnemyTask(Mover &enemy)
+{
     sceneLayer->addChild(&enemy);
     enemyManager.push_back(&enemy);
 }
 
 // vectorを走査し、Moveメソッドを通じてそれぞれのタスクを実行する
-void TaskManager::DoTask(std::vector<Mover *> &list, Layer &sceneLayer)
+void TaskManager::DoTask(std::vector<Mover *> &list, cocos2d::Layer &sceneLayer)
 {
     std::vector<Mover *>::iterator i;
     for (i = list.begin(); i != list.end();)
@@ -59,19 +65,23 @@ void TaskManager::DoTask(std::vector<Mover *> &list, Layer &sceneLayer)
     }
 }
 
-void TaskManager::BulletCollistion(Mover *bullet){
+void TaskManager::BulletCollistion(Mover *bullet)
+{
     std::vector<Mover *>::iterator i;
     for(i = enemyManager.begin(); i != enemyManager.end(); ++i){
-        Rect bulletrect = bullet->boundingBox();
-        Rect enemyrect = (*i)->boundingBox();
+        cocos2d::Rect bulletrect = bullet->boundingBox();
+        cocos2d::Rect enemyrect = (*i)->boundingBox();
         
         // 自機の弾と敵との衝突判定
-        if ((*i)->getTag() == 4 && bulletrect.intersectsRect(enemyrect)) {
+        if ((*i)->getTag() == 4 && bulletrect.intersectsRect(enemyrect))
+        {
             (*i)->hitpoint--;
             
             // HPが0の時、生存フラグを下ろす。
-            if ((*i)->hitpoint < 0) {
+            if ((*i)->hitpoint < 0)
+            {
                 (*i)->isAlive = false;
+                GameData::getInstance().score += (*i)->score;
             }
             bullet->isAlive = false;
         }

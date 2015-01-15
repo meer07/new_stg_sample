@@ -11,13 +11,13 @@
 // 共通の移動処理
 void Mover::MoveBase()
 {
-    Size windowSize = Director::getInstance()->getWinSize();
+    cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
     
     // 角度をラジアンに変える
     float rad = CC_DEGREES_TO_RADIANS(angle);
     
     // 現在の座標を取得して角度と速度に合わせて移動
-    Vec2 position = this->getPosition();
+    cocos2d::Vec2 position = this->getPosition();
     this->setPosition(position.x + speed*cosf(rad), position.y + speed*sinf(rad));
     
     // 画面外に出たら生存フラグを下ろす。

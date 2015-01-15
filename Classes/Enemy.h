@@ -9,7 +9,6 @@
 #ifndef __Getsuyoubi__Enemy__
 #define __Getsuyoubi__Enemy__
 
-#include <stdio.h>
 #include "Mover.h"
 #include "Bullet.h"
 #include "TaskManager.h"
@@ -17,11 +16,10 @@
 class Enemy : public Mover
 {
 protected:
-    const float oneSec = 60; // 1秒60フレーム
+    
     int angleRate;
     int shotLimit;
     float shotDelay, shotDelayTmp;
-    float moveLimit;
     float moveDelay, moveDelayTmp;
 };
 

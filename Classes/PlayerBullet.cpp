@@ -7,6 +7,7 @@
 //  
 
 #include "PlayerBullet.h"
+#include "TaskManager.h"
 #include <iostream>
 
 PlayerBullet* PlayerBullet::create(float speed, float speedRate, float angle, std::string fileName)
