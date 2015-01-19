@@ -15,11 +15,11 @@ Cocos2d-x3.0以降を使用して、現在縦スクロールシューティン�
 Cocos2d-x (ver.3.3または3.4)
 
 ## Usage
-試したい場合はCocos2d-xのプロジェクトを作成した後、Classesフォルダをそのままコピーしてエミュレータからアプリを起動するとすぐに見れます。
+試したい場合はCocos2d-xのプロジェクトを作成した後、Classesフォルダをそのままコピーしてエミュレータからアプリを起動するとすぐに試せます。
 
 ## Licence
 
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+[MIT](http://opensource.org/licenses/mit-license.php)
 
 ## Author
 
