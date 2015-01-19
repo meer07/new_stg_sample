@@ -1,17 +1,15 @@
 //
-//  Enemy02.cpp
+//  Enemy04.cpp
 //  Getsuyoubi
 //
-//  Created by 海下 直哉 on 2015/01/07.
+//  Created by 海下 直哉 on 2015/01/19.
 //
 //
 
-#include "Enemy02.h"
-#include "Bullet.h"
-#include "TaskManager.h"
+#include "Enemy04.h"
 
-Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std::string fileName){
-    Enemy02 *enemy = new Enemy02();
+Enemy04* Enemy04::create(const float enemyParam[], const float shotParam[], std::string fileName){
+    Enemy04 *enemy = new Enemy04();
     
     // 敵本体のパラメータ
     enemy->hitpoint = 1;
@@ -24,7 +22,8 @@ Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std:
     enemy->setTag(4);
     
     // ショットのパラメータ
-    enemy->shotDelay = enemy->shotDelayTmp = shotParam[0];
+    enemy->shotDelay = 60;
+    enemy->shotDelayTmp = shotParam[0];
     enemy->shotLimit = shotParam[1];
     enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
     //enemy->moveLimit = shotParam[3];
@@ -39,19 +38,17 @@ Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std:
     return NULL;
 }
 
-void Enemy02::Move(){
-    MovePattern();
+void Enemy04::Move(){
+    float rotateAngle = rotate();
+    MovePattern(rotateAngle);
     MoveBase();
-    Shot();
+    Shot(rotateAngle);
 }
 
 // 自機狙い弾
-void Enemy02::Shot(){
+void Enemy04::Shot(float rotateAngle){
     if (shotDelay <= 0 && shotLimit > 0) {
-        cocos2d::Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
-        cocos2d::Vec2 enemyPosition = this->getPosition();
-        float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
-        float shotParam[3] = {5, 0, bulletAngle};
+        float shotParam[3] = {5, 0, rotateAngle};
         
         TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
         
@@ -62,11 +59,18 @@ void Enemy02::Shot(){
     }
 }
 
-void Enemy02::MovePattern(){
-    if (moveDelay < 0 && angle > -90) {
-        angle += angleRate;
-        moveDelay = moveDelayTmp;
+void Enemy04::MovePattern(float rotateAngle){
+    if (moveDelay > 0) {
+        this->setRotation(-rotateAngle - angleRate);
+        angle = rotateAngle;
     }else{
         moveDelay--;
     }
+}
+
+float Enemy04::rotate()
+{
+    cocos2d::Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
+    cocos2d::Vec2 enemyPosition = this->getPosition();
+    return CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
 }

@@ -9,6 +9,7 @@
 #ifndef __Getsuyoubi__TaskManager__
 #define __Getsuyoubi__TaskManager__
 
+#include <cocos2d.h>
 #include <vector>
 #include "Mover.h"
 

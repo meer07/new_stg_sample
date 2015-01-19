@@ -15,7 +15,7 @@ Player* Player::create(cocos2d::Layer *sceneLayer_)
     Player* player = new Player();
     
     player->shotSpeed = 10;
-    player->shotSpeedRate = 1;
+    player->shotSpeedRate = 0.1f;
     player->shotAngle = 90;
     player->shotDelay = 1;
     player->isAlive = true;

@@ -16,7 +16,6 @@
 class Enemy : public Mover
 {
 protected:
-    
     int angleRate;
     int shotLimit;
     float shotDelay, shotDelayTmp;

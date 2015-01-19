@@ -40,6 +40,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     auto scene = HelloWorld::createScene();
 
+    Size resourceDpi = Size(768,1080);
+    glview->setDesignResolutionSize(resourceDpi.width, resourceDpi.height, ResolutionPolicy::EXACT_FIT);
+    Size frameSize = glview->getFrameSize();
+    director->setContentScaleFactor(MIN(resourceDpi.width / frameSize.width, resourceDpi.height / frameSize.height));
+    
+    
     // run
     director->runWithScene(scene);
 

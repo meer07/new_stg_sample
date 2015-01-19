@@ -56,7 +56,7 @@ void Enemy03::Shot()
     if (shotDelay <= 0 && shotLimit > 0)
     {
         for (int i = 1; i < 4; i++) {
-            float shotParam[3] = {5, 1, static_cast<float>(360 - 45*i)};
+            float shotParam[3] = {5, 0, static_cast<float>(360 - 45*i)};
             TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
         }
         shotDelay = shotDelayTmp;

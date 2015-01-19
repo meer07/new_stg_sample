@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "GameScene.h"
-#include "UIManager.h"
+#include "BackGround.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -22,10 +22,12 @@ public:
     
 private:
     int nowStage = 1;
+    cocos2d::Node *UINode;
     GameScene *gameScene;
-    UIManager *uiManager;
+    BackGround *background;
     cocos2d::Point startPoint, endPoint;
     
+    void setUI();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

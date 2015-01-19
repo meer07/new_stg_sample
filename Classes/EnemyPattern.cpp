@@ -11,6 +11,7 @@
 #include "Enemy01.h"
 #include "Enemy02.h"
 #include "Enemy03.h"
+#include "Enemy04.h"
 
 // 左端から登場
 void EnemyPattern::EnemyPattern01(const float enemyParam[], const float shotParam[], float makePointY)
@@ -57,4 +58,32 @@ void EnemyPattern::EnemyPattern05(const float enemyParam[], const float shotPara
     enemy3->setPosition(makePointX, cocos2d::Director::getInstance()->getWinSize().height - enemy3->getTextureRect().size.height/2);
     
     TaskManager::getInstance().AddEnemyTask(*enemy3);
+}
+
+// 上から登場(誘導敵)
+void EnemyPattern::EnemyPattern06(const float enemyParam[], const float shotParam[], float makePointX){
+    Enemy04 *enemy4 = Enemy04::create(enemyParam, shotParam, "test_enemy.png");
+    enemy4->setPosition(makePointX, cocos2d::Director::getInstance()->getWinSize().height - enemy4->getTextureRect().size.height/2);
+    
+    TaskManager::getInstance().AddEnemyTask(*enemy4);
+}
+
+// 左端から登場(誘導敵)
+void EnemyPattern::EnemyPattern07(const float enemyParam[], const float shotParam[], float makePointY)
+{
+    Enemy04 *enemy4 = Enemy04::create(enemyParam, shotParam, "test_enemy.png");
+    
+    
+    enemy4->setPosition(enemy4->getTextureRect().size.width/2, makePointY - enemy4->getTextureRect().size.height/2);
+    TaskManager::getInstance().AddEnemyTask(*enemy4);
+}
+
+// 右端から登場(誘導敵)
+void EnemyPattern::EnemyPattern08(const float enemyParam[], const float shotParam[], float makePointY)
+{
+    Enemy04 *enemy4 = Enemy04::create(enemyParam, shotParam, "test_enemy.png");
+    
+    enemy4->setPosition(cocos2d::Director::getInstance()->getWinSize().width - enemy4->getTextureRect().size.width, makePointY - enemy4->getTextureRect().size.height/2);
+    
+    TaskManager::getInstance().AddEnemyTask(*enemy4);
 }

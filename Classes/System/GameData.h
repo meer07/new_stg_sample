@@ -9,6 +9,8 @@
 #ifndef __Getsuyoubi__GameData__
 #define __Getsuyoubi__GameData__
 
+#include <cocos2d.h>
+
 class GameData {
 public:
     static GameData& getInstance();

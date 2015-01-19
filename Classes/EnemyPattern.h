@@ -9,6 +9,8 @@
 #ifndef __Getsuyoubi__EnemyPattern__
 #define __Getsuyoubi__EnemyPattern__
 
+#include <cocos2d.h>
+
 class EnemyPattern
 {
 public:
@@ -17,5 +19,8 @@ public:
     void EnemyPattern03(const float enemyParam[], const float shotParam[], float makePointX);
     void EnemyPattern04(const float enemyParam[], const float shotParam[], float makePointX);
     void EnemyPattern05(const float enemyParam[], const float shotParam[], float makePointX);
+    void EnemyPattern06(const float enemyParam[], const float shotParam[], float makePointX);
+    void EnemyPattern07(const float enemyParam[], const float shotParam[], float makePointY);
+    void EnemyPattern08(const float enemyParam[], const float shotParam[], float makePointY);
 };
 #endif /* defined(__Getsuyoubi__EnemyPattern__) */

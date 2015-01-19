@@ -12,7 +12,6 @@ class EnemyMissle : public Enemy
 {
 public:
     static EnemyMissle* create(const float param[], std::string fileName);
-    
     void MovePattern();
     void Move();
     void Collision();

@@ -10,7 +10,7 @@
 #include "Bullet.h"
 #include "TaskManager.h"
 
-Enemy01* Enemy01::create(const float enemyParam[], const float shotParam[],std::string fileName)
+Enemy01* Enemy01::create(const float enemyParam[], const float shotParam[], std::string fileName)
 {
     Enemy01 *enemy = new Enemy01();
     // 敵本体のパラメータ
@@ -46,11 +46,12 @@ void Enemy01::Move()
     Shot();
 }
 
+// 直線弾
 void Enemy01::Shot()
 {
     if (shotDelay <= 0 && shotLimit > 0)
     {
-        float shotParam[3] = {5, 1, -90};
+        float shotParam[3] = {5, 0, -90};
         
         TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
         shotDelay = shotDelayTmp;

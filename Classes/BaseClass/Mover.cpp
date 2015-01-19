@@ -18,6 +18,7 @@ void Mover::MoveBase()
     
     // 現在の座標を取得して角度と速度に合わせて移動
     cocos2d::Vec2 position = this->getPosition();
+    speed += speedRate;
     this->setPosition(position.x + speed*cosf(rad), position.y + speed*sinf(rad));
     
     // 画面外に出たら生存フラグを下ろす。

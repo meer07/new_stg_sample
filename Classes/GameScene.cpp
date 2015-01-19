@@ -9,19 +9,95 @@
 #include "GameScene.h"
 #include "GameData.h"
 #include "Boss01.h"
+#include "Boss02.h"
+#include <random>
 
 GameScene::GameScene()
 {
-    frame = 0;
+    frame = 9;
     pattern = new EnemyPattern();
-    ui = new UIManager();
 }
 
 void GameScene::Scene01(cocos2d::Size windowSize)
 {
     float second = frame / 60;
     frame++;
-    /*
+    
+    if (second == 10) // 10秒後に
+    {
+        Pattern03(windowSize.width / 5);
+    }
+    else if (second == 11)
+    {
+        Pattern03(windowSize.width * 2 / 5);
+    }
+    else if (second == 16)
+    {
+        Pattern03(windowSize.width * 3 / 5);
+    }
+    else if (second == 17)
+    {
+        Pattern03(windowSize.width * 4 / 5);
+    }
+    else if (second == 25 || second == 31 || second == 38) {
+        Pattern03(windowSize.width / 5);
+    }
+    else if (second == 26 || second == 32 || second == 37)
+    {
+        Pattern03(windowSize.width * 4 / 5);
+    }
+    else if (second == 27 || second == 30 || second == 39)
+    {
+        Pattern03(windowSize.width / 2);
+    }
+    else if (second == 45 || second == 90)
+    {
+        float sceneOneEnemyParam[4] = {3, 0, 270, 0};
+        float sceneOneEnemyPatternParam[4] = {100, 6, 1};
+        pattern->EnemyPattern05(sceneOneEnemyParam, sceneOneEnemyPatternParam, windowSize.width/2 - 100);
+    }
+    else if (((second >= 55 && second <= 65) || (second >= 70 && second <= 80)) && static_cast<int>(frame) % 30 == 0)
+    {
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> randomPoint(1,5);
+        
+        Pattern04((windowSize.width * randomPoint(mt))/ 6);
+    }
+    else if (second == 100)
+    {
+        for (int i = 1; i < 3; i++) {
+            Pattern03(windowSize.width * (5-i) / 5);
+        }
+        Pattern05(windowSize.height / 2);
+    }
+    else if (second == 101 || second == 102 || second == 103 || second == 104)
+    {
+        Pattern05(windowSize.height / 2);
+    }
+    else if (second == 110 || second == 111 || second == 112 || second == 113)
+    {
+        Pattern06(windowSize.height / 2);
+    }
+    else if (second == 109)
+    {
+        for (int i = 1; i < 3; i++) {
+            Pattern03(windowSize.width * i / 5);
+        }
+        Pattern06(windowSize.height / 2);
+    }
+    else if (second == 115) // warning!!
+    {
+    }
+    else if (second >= 130) // ボス
+    {
+    }
+}
+
+void GameScene::Scene02(cocos2d::Size windowSize)
+{
+    float second = frame / 60;
+    frame++;
     if (second == 10 || second == 11 || second == 12 || second == 13 || second == 84 ||second == 85)
     {
         Pattern01(windowSize);
@@ -75,47 +151,56 @@ void GameScene::Scene01(cocos2d::Size windowSize)
     }
     else if (second == 150)
     {
-        Boss01 *boss = Boss01::create("boss01.png");
+        Boss02 *boss = Boss02::create("boss02.png");
         boss->setPosition(windowSize.width/2 - boss->getTextureRect().size.width/2, windowSize.height - boss->getTextureRect().size.height/2);
         TaskManager::getInstance().AddEnemyTask(*boss);
     }
-    */
-    
-    if (second == 1)
-    {
-        Boss01 *boss = Boss01::create("boss01.png");
-        boss->setPosition(windowSize.width/2 - boss->getTextureRect().size.width/2, windowSize.height - boss->getTextureRect().size.height/2);
-        TaskManager::getInstance().AddEnemyTask(*boss);
-    }
-
 }
+
 
 void GameScene::Pattern01(cocos2d::Size windowSize)
 {
-    float sceneOneEnemyParam[4] = {3, 1, 0, -1};
+    float sceneOneEnemyParam[4] = {3, 0, 0, -1};
     float sceneOneEnemyPatternParam[4] = {90, 2, 1};
     pattern->EnemyPattern01(sceneOneEnemyParam, sceneOneEnemyPatternParam, windowSize.height/2);
 }
 
 void GameScene::Pattern02(cocos2d::Size windowSize)
 {
-    float sceneOneEnemyParam[4] = {3, 1, 180, 1};
+    float sceneOneEnemyParam[4] = {3, 0, 180, 1};
     float sceneOneEnemyPatternParam[4] = {90, 2, 1};
     pattern->EnemyPattern02(sceneOneEnemyParam, sceneOneEnemyPatternParam, windowSize.height/2);
 }
 
 void GameScene::Pattern03(float pointX)
 {
-    float sceneOneEnemyParam[4] = {3, 1, 270, 0};
+    float sceneOneEnemyParam[4] = {6, -0.05f, 270, 0};
     float sceneOneEnemyPatternParam[4] = {90, 2, 1};
     pattern->EnemyPattern04(sceneOneEnemyParam, sceneOneEnemyPatternParam, pointX);
 }
 
+void GameScene::Pattern04(float pointX)
+{
+    float sceneOneEnemyParam[4] = {3, 0, 270, 0};
+    float sceneOneEnemyPatternParam[4] = {90, 2, 1};
+    pattern->EnemyPattern06(sceneOneEnemyParam, sceneOneEnemyPatternParam, pointX);
+}
+
+void GameScene::Pattern05(float pointY)
+{
+    float sceneOneEnemyParam[4] = {3, 0, 0, 0};
+    float sceneOneEnemyPatternParam[4] = {90, 2, 1};
+    pattern->EnemyPattern07(sceneOneEnemyParam, sceneOneEnemyPatternParam, pointY);
+}
+
+void GameScene::Pattern06(float pointY)
+{
+    float sceneOneEnemyParam[4] = {3, 0, 180, 0};
+    float sceneOneEnemyPatternParam[4] = {90, 2, 1};
+    pattern->EnemyPattern08(sceneOneEnemyParam, sceneOneEnemyPatternParam, pointY);
+}
 
 GameScene::~GameScene(){
     pattern = NULL;
-    ui = NULL;
-    
     delete pattern;
-    delete ui;
 }

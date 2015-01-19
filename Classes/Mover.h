@@ -9,6 +9,7 @@
 #ifndef __Getsuyoubi__Mover__
 #define __Getsuyoubi__Mover__
 
+#include <cocos2d.h>
 #include <math.h>
 
 class Mover : public cocos2d::Sprite
@@ -20,7 +21,6 @@ public:
     float speedRate;
     float angle;
     bool isAlive;
-    //Layer *sceneLayer;
     
     // 仮想メソッド
     virtual void MovePattern(){};
