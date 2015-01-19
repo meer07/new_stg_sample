@@ -15,8 +15,8 @@ BackGround::BackGround(cocos2d::Size windowSize_, cocos2d::Layer &sceneLayer)
     windowSize = windowSize_;
     backGround_f = Sprite::createWithTexture(batchNode->getTexture());
     backGround_b = Sprite::createWithTexture(batchNode->getTexture());
-    backGround_f->setPosition(windowSize.width/2, 0);
-    backGround_b->setPosition(windowSize.width/2, windowSize.height);
+    backGround_f->setPosition(0, 0);
+    backGround_b->setPosition(0, windowSize.height);
     
     sceneLayer.addChild(backGround_f);
     sceneLayer.addChild(backGround_b);

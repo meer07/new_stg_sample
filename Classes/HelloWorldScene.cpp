@@ -32,7 +32,7 @@ bool HelloWorld::init()
     windowSize = Director::getInstance()->getWinSize();
     TaskManager::getInstance().sceneLayer = this;
     
-    //background = new BackGround(windowSize, *this);
+    background = new BackGround(windowSize, *this);
     //setUI();
     PlayerSet(windowSize);
     
@@ -56,7 +56,7 @@ void HelloWorld::update(float frame)
             break;
     }
     
-    //background->Move(-0.5);
+    background->Move(-0.5);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().enemyManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().bulletManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().playerBulletManager, *this);

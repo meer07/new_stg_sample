@@ -28,6 +28,7 @@ Enemy04* Enemy04::create(const float enemyParam[], const float shotParam[], std:
     enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
     //enemy->moveLimit = shotParam[3];
     
+    
     if (enemy && enemy->initWithFile(fileName)) {
         enemy->autorelease();
         enemy->retain();

@@ -28,7 +28,6 @@ Boss02* Boss02::create(std::string fileName)
     boss->shotLimit = 0;
     boss->moveDelay = 0;
     boss->moveDelayTmp = 0;
-    //boss->moveLimit = 60;
     
     boss->moveFlag = true;
     boss->shotFlag = true;
