@@ -18,6 +18,8 @@ public:
     void MovePattern(cocos2d::Point nowPoint);
     void Move();
     void Shot();
+    void Destroy();
+    
 private:
     float bulletAngle;
     bool moveFlag;

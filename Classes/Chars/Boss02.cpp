@@ -13,7 +13,7 @@ Boss02* Boss02::create(std::string fileName)
 {
     Boss02 *boss = new Boss02();
     
-    boss->hitpoint = 150;
+    boss->hitpoint = 200;
     boss->score = 1000;
     boss->speed = 3;
     boss->speedRate = 1;
@@ -100,6 +100,9 @@ void Boss02::Shot()
     }
 
     shotDelay++;
+}
+
+void Boss02::Destroy(){
 }
 
 // 自機狙いway弾

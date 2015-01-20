@@ -63,4 +63,8 @@ void Enemy01::Shot()
     }
 }
 
+void Enemy01::Destroy()
+{
+}
+
 void Enemy01::MovePattern(){}

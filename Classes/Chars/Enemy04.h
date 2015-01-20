@@ -18,6 +18,8 @@ public:
     void Move();
     void MovePattern(float rotateAngle);
     void Shot(float rotateAngle);
+    void Destroy();
+    
 private:
     float rotate();
 };

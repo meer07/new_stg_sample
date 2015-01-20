@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "PlayerBullet.h"
 #include "TaskManager.h"
+#include "GameData.h"
 
 Player* Player::create(cocos2d::Layer *sceneLayer_)
 {
@@ -20,6 +21,8 @@ Player* Player::create(cocos2d::Layer *sceneLayer_)
     player->shotDelay = 1;
     player->isAlive = true;
     player->setTag(1);
+    player->frame = 120;
+    player->muteki = false;
 
     
     if (player && player->initWithFile("player.png"))
@@ -51,5 +54,20 @@ void Player::Shot()
     else
     {
         shotDelay--;
+    }
+}
+
+void Player::Destroy()
+{
+    if (!muteki) {
+        GameData::getInstance().playerHp -= 1;
+        muteki = true;
+    }else{
+        frame--;
+    }
+    
+    if (frame < 0) {
+        muteki = false;
+        frame = 120; // 2秒
     }
 }

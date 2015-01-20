@@ -14,16 +14,15 @@
 
 GameScene::GameScene()
 {
-    frame = 9;
     pattern = new EnemyPattern();
 }
 
 void GameScene::Scene01(cocos2d::Size windowSize)
 {
-    float second = frame / 60;
-    frame++;
+    float second = GameData::getInstance().frame / 60;
+    GameData::getInstance().frame++;
     
-    if (second == 10) // 10秒後に
+    if (second == 10) // 10秒後からスタート
     {
         Pattern03(windowSize.width / 5);
     }
@@ -89,8 +88,24 @@ void GameScene::Scene01(cocos2d::Size windowSize)
     else if (second == 115) // warning!!
     {
     }
-    else if (second >= 130) // ボス
+    else if (second == 130) // ボス
     {
+        Boss01 *boss = Boss01::create("boss01.png");
+        boss->setPosition(windowSize.width/2 - boss->getTextureRect().size.width/2, windowSize.height - boss->getTextureRect().size.height/2);
+        TaskManager::getInstance().AddEnemyTask(*boss);
+    }
+    else if (second >= 130)
+    {
+        if (static_cast<int>(frame) % 120 == 0) {
+            Pattern03(windowSize.width / 5);
+            Pattern03(windowSize.width * 4 / 5);
+        }
+        
+        if (GameData::getInstance().stageClear01) {
+            // ステージクリア
+            GameData::getInstance().nowStage = 2;
+            GameData::getInstance().frame = 0;
+        }
     }
 }
 

@@ -14,8 +14,9 @@
 class GameData {
 public:
     static GameData& getInstance();
-    int score;
-    int playerHp;
+    int nowStage, score, playerHp;
+    float frame;
+    bool stageClear01, stageClear02, stageClear03;
     
     GameData();
     GameData(const GameData &other){}

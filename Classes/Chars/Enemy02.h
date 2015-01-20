@@ -18,6 +18,7 @@ public:
     void MovePattern();
     void Move();
     void Shot();
+    void Destroy();
 };
 
 #endif /* defined(__Getsuyoubi__Enemy02__) */

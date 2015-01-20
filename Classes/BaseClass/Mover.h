@@ -26,6 +26,7 @@ public:
     virtual void MovePattern(){};
     virtual void Move(){};
     virtual void Collision(){};
+    virtual void Destroy(){};
     
 protected:
     void MoveBase();

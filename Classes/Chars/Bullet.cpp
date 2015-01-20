@@ -8,6 +8,7 @@
 
 #include "Bullet.h"
 #include "TaskManager.h"
+#include "GameData.h"
 
 Bullet* Bullet::create(const float param[], std::string fileName)
 {
@@ -42,7 +43,7 @@ void Bullet::Collision()
     
     if(bulletrect.intersectsRect(playerrect))
     {
-        TaskManager::getInstance().player->isAlive = false;
+        TaskManager::getInstance().player->Destroy();
         this->isAlive = false;
         //std::cout << "Miss!!" << std::endl;
     }

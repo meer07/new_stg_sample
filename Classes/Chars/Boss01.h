@@ -14,11 +14,12 @@
 class Boss01 : public Enemy
 {
 public:
-    
     static Boss01* create(std::string fileName);
     void MovePattern(cocos2d::Point nowPoint);
     void Move();
     void Shot(cocos2d::Point nowPoint);
+    void Destroy();
+    
 private:
     bool moveFlag;
     bool shotFlag;

@@ -8,6 +8,7 @@
 
 #include "Boss01.h"
 #include "EnemyMissle.h"
+#include "GameData.h"
 
 Boss01* Boss01::create(std::string fileName)
 {
@@ -16,7 +17,7 @@ Boss01* Boss01::create(std::string fileName)
     boss->hitpoint = 150;
     boss->score = 1000;
     boss->speed = 3;
-    boss->speedRate = 1;
+    boss->speedRate = 0;
     boss->angle = 270;
     boss->angleRate = 0;
     boss->isAlive = true;
@@ -122,4 +123,10 @@ void Boss01::RotateShot(float angle)
 {
     float shotParam[3] = {5, 1, angle};
     TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
+}
+
+void Boss01::Destroy(){
+    // 爆発アニメ
+    // ステージクリア
+    GameData::getInstance().stageClear01 = true;
 }

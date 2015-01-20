@@ -15,8 +15,8 @@ BackGround::BackGround(cocos2d::Size windowSize_, cocos2d::Layer &sceneLayer)
     windowSize = windowSize_;
     backGround_f = Sprite::createWithTexture(batchNode->getTexture());
     backGround_b = Sprite::createWithTexture(batchNode->getTexture());
-    backGround_f->setPosition(0, 0);
-    backGround_b->setPosition(0, windowSize.height);
+    backGround_f->setPosition(windowSize.width/2, 0);
+    backGround_b->setPosition(windowSize.width/2, windowSize.height);
     
     sceneLayer.addChild(backGround_f);
     sceneLayer.addChild(backGround_b);
@@ -29,7 +29,7 @@ void BackGround::Move(float speedRate)
     for (int i = 0; i < 2; i++)
     {
         cocos2d::Point point = backgrounds[i]->getPosition();
-        if (point.y < 0)
+        if (point.y < -backgrounds[0]->getTextureRect().size.height)
         {
             // 上まで戻す
             backgrounds[i]->setPosition(point.x, windowSize.height);

@@ -19,8 +19,12 @@ public:
     float shotAngle;
     float shotDelay;
     
+    int frame;
+    bool muteki;
+    
     static Player* create(cocos2d::Layer *sceneLayer_);
     void Move();
     void Shot();
+    void Destroy();
 };
 #endif /* defined(__Getsuyoubi__Player__) */

@@ -18,7 +18,7 @@ EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
     missle->score = 50;
     missle->speed = param[0];
     missle->moveLimit = param[1];
-    missle->speedRate = 1;
+    missle->speedRate = 0;
     missle->angle = param[2];
     missle->isAlive = true;
     missle->setTag(4);
@@ -76,4 +76,8 @@ void EnemyMissle::Collision()
         TaskManager::getInstance().player->isAlive = false;
         this->isAlive = false;
     }
+}
+
+void EnemyMissle::Destroy()
+{
 }

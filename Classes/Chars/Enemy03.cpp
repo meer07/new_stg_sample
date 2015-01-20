@@ -92,3 +92,7 @@ void Enemy03::MovePattern()
         }
     }
 }
+
+void Enemy03::Destroy()
+{
+}

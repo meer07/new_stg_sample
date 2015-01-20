@@ -71,3 +71,7 @@ void Enemy02::MovePattern(){
         moveDelay--;
     }
 }
+
+void Enemy02::Destroy()
+{
+}

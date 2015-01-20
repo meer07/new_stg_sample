@@ -15,6 +15,7 @@ public:
     void MovePattern();
     void Move();
     void Collision();
+    void Destroy();
 
 private:
     int moveDelay;

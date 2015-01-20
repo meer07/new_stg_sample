@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "GameScene.h"
 #include "BackGround.h"
+#include "UIManager.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -21,13 +22,11 @@ public:
     CREATE_FUNC(HelloWorld);
     
 private:
-    int nowStage = 1;
     cocos2d::Node *UINode;
     GameScene *gameScene;
     BackGround *background;
+    UIManager *uiManager;
     cocos2d::Point startPoint, endPoint;
-    
-    void setUI();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

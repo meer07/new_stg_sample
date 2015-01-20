@@ -69,6 +69,10 @@ void Enemy04::MovePattern(float rotateAngle){
     }
 }
 
+void Enemy04::Destroy()
+{
+}
+
 float Enemy04::rotate()
 {
     cocos2d::Vec2 playerPosition = TaskManager::getInstance().player->getPosition();

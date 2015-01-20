@@ -1,6 +1,6 @@
 #include "HelloWorldScene.h"
-#include "../cocos2d/cocos/editor-support/cocostudio/CocoStudio.h"
 #include "Player.h"
+#include "GameData.h"
 #include "TaskManager.h"
 
 USING_NS_CC;
@@ -33,11 +33,11 @@ bool HelloWorld::init()
     TaskManager::getInstance().sceneLayer = this;
     
     background = new BackGround(windowSize, *this);
-    //setUI();
-    PlayerSet(windowSize);
-    
+    uiManager = new UIManager();
     gameScene = new GameScene();
-
+    
+    uiManager->setGameScene(*this);
+    PlayerSet(windowSize);
     this->scheduleUpdate();
     
     return true;
@@ -47,11 +47,12 @@ void HelloWorld::update(float frame)
 {
     TaskManager::getInstance().player->Move();
     
-    switch (nowStage) {
+    switch (GameData::getInstance().nowStage) {
         case 1:
             gameScene->Scene01(windowSize);
             break;
-            
+        case 2:
+            gameScene->Scene02(windowSize);
         default:
             break;
     }
@@ -60,6 +61,7 @@ void HelloWorld::update(float frame)
     TaskManager::getInstance().DoTask(TaskManager::getInstance().enemyManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().bulletManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().playerBulletManager, *this);
+    uiManager->updateUI();
 }
 
 void HelloWorld::PlayerSet(Size windowSize)
@@ -76,12 +78,6 @@ void HelloWorld::PlayerSet(Size windowSize)
     listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
     
     dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-}
-
-void HelloWorld::setUI()
-{
-    UINode = CSLoader::getInstance()->createNode("MainScene.csb");
-    this->addChild(UINode);
 }
 
 bool HelloWorld::onTouchBegan(Touch *touch, Event *event)
