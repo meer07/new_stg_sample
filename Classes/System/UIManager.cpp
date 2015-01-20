@@ -11,22 +11,26 @@
 #include "../cocos2d/cocos/editor-support/cocostudio/CocoStudio.h"
 #include <string>
 
-UIManager::UIManager(){}
+UIManager::UIManager()
+{
+}
 
 void UIManager::setTitleScene(cocos2d::Layer& sceneLayer)
 {
-    sceneNode = cocos2d::CSLoader::getInstance()->createNodeWithFlatBuffersFile("/Users/naoya-kaige/Desktop/Getsuyoubi/Resources/res/TitleScene.csb");
+    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("titlescene.csb");
+    sceneNode = cocos2d::CSLoader::getInstance()->createNodeWithFlatBuffersFile(fullpath);
     sceneLayer.addChild(sceneNode);
 }
 
 void UIManager::setGameScene(cocos2d::Layer& sceneLayer)
 {
     cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
+    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
     score = cocos2d::Label::createWithTTF("score:\n" + std::to_string(GameData::getInstance().score),
-                                          "/Users/naoya-kaige/Desktop/Getsuyoubi/Resources/fonts/PixelMplus12-Bold.ttf",
+                                          fullpath,
                                           32);
     zanki = cocos2d::Label::createWithTTF(std::to_string(GameData::getInstance().playerHp),
-                                          "/Users/naoya-kaige/Desktop/Getsuyoubi/Resources/fonts/PixelMplus12-Bold.ttf",
+                                          fullpath,
                                           32);
     
     score->setPosition(100, windowSize.height-50);

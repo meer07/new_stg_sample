@@ -10,6 +10,7 @@
 
 BackGround::BackGround(cocos2d::Size windowSize_, cocos2d::Layer &sceneLayer)
 {
+    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("background.png");
     auto batchNode = cocos2d::SpriteBatchNode::create("background.png");
     sceneLayer.addChild(batchNode);
     windowSize = windowSize_;

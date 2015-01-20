@@ -19,7 +19,6 @@ public:
     void Scene01(cocos2d::Size windowSize);
     void Scene02(cocos2d::Size windowSize);
 private:
-    float frame;
     EnemyPattern *pattern;
     cocos2d::Label *scoreLabel;
     

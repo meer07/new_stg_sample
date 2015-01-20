@@ -55,7 +55,7 @@ void GameScene::Scene01(cocos2d::Size windowSize)
         float sceneOneEnemyPatternParam[4] = {100, 6, 1};
         pattern->EnemyPattern05(sceneOneEnemyParam, sceneOneEnemyPatternParam, windowSize.width/2 - 100);
     }
-    else if (((second >= 55 && second <= 65) || (second >= 70 && second <= 80)) && static_cast<int>(frame) % 30 == 0)
+    else if (((second >= 55 && second <= 65) || (second >= 70 && second <= 80)) && static_cast<int>(GameData::getInstance().frame) % 60 == 0)
     {
         std::random_device rd;
         std::mt19937 mt(rd());
@@ -90,13 +90,14 @@ void GameScene::Scene01(cocos2d::Size windowSize)
     }
     else if (second == 130) // ボス
     {
-        Boss01 *boss = Boss01::create("boss01.png");
+        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("boss01.png");
+        Boss01 *boss = Boss01::create(fullpath);
         boss->setPosition(windowSize.width/2 - boss->getTextureRect().size.width/2, windowSize.height - boss->getTextureRect().size.height/2);
         TaskManager::getInstance().AddEnemyTask(*boss);
     }
     else if (second >= 130)
     {
-        if (static_cast<int>(frame) % 120 == 0) {
+        if (static_cast<int>(GameData::getInstance().frame) % 120 == 0) {
             Pattern03(windowSize.width / 5);
             Pattern03(windowSize.width * 4 / 5);
         }
@@ -111,8 +112,8 @@ void GameScene::Scene01(cocos2d::Size windowSize)
 
 void GameScene::Scene02(cocos2d::Size windowSize)
 {
-    float second = frame / 60;
-    frame++;
+    float second = GameData::getInstance().frame / 60;
+    GameData::getInstance().frame++;
     if (second == 10 || second == 11 || second == 12 || second == 13 || second == 84 ||second == 85)
     {
         Pattern01(windowSize);

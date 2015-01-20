@@ -53,11 +53,12 @@ void Enemy03::Move()
 
 void Enemy03::Shot()
 {
+    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
     if (shotDelay <= 0 && shotLimit > 0)
     {
         for (int i = 1; i < 4; i++) {
-            float shotParam[3] = {5, 0, static_cast<float>(360 - 45*i)};
-            TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
+            float shotParam[3] = {8, 0, static_cast<float>(360 - 45*i)};
+            TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
         }
         shotDelay = shotDelayTmp;
         shotLimit--;

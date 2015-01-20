@@ -52,9 +52,10 @@ void Enemy02::Shot(){
         cocos2d::Vec2 playerPosition = TaskManager::getInstance().player->getPosition();
         cocos2d::Vec2 enemyPosition = this->getPosition();
         float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
-        float shotParam[3] = {5, 0, bulletAngle};
+        float shotParam[3] = {8, 0, bulletAngle};
         
-        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
+        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
         
         shotDelay = shotDelayTmp;
         shotLimit--;

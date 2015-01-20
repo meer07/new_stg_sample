@@ -15,17 +15,17 @@ Player* Player::create(cocos2d::Layer *sceneLayer_)
 {
     Player* player = new Player();
     
-    player->shotSpeed = 10;
+    player->shotSpeed = 40;
     player->shotSpeedRate = 0.1f;
     player->shotAngle = 90;
-    player->shotDelay = 1;
+    player->shotDelay = 0;
     player->isAlive = true;
     player->setTag(1);
     player->frame = 120;
     player->muteki = false;
 
-    
-    if (player && player->initWithFile("player.png"))
+    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("player.png");
+    if (player && player->initWithFile(fullpath))
     {
         player->autorelease();
         player->retain();
@@ -45,7 +45,8 @@ void Player::Shot()
 {
     if (shotDelay <= 0)
     {
-        PlayerBullet *bullet = PlayerBullet::create(shotSpeed, shotSpeedRate, shotAngle, "enemy_bullet01.png");
+        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet02.png");
+        PlayerBullet *bullet = PlayerBullet::create(shotSpeed, shotSpeedRate, shotAngle, fullpath);
         bullet->setPosition(Player::getPosition().x, Player::getPosition().y);
         TaskManager::getInstance().sceneLayer->addChild(bullet);
         TaskManager::getInstance().playerBulletManager.push_back(std::move(bullet));

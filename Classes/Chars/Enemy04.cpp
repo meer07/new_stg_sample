@@ -50,8 +50,8 @@ void Enemy04::Move(){
 void Enemy04::Shot(float rotateAngle){
     if (shotDelay <= 0 && shotLimit > 0) {
         float shotParam[3] = {5, 0, rotateAngle};
-        
-        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
+        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
         
         shotDelay = shotDelayTmp;
         shotLimit--;

@@ -51,9 +51,9 @@ void Enemy01::Shot()
 {
     if (shotDelay <= 0 && shotLimit > 0)
     {
-        float shotParam[3] = {5, 0, -90};
-        
-        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
+        float shotParam[3] = {8, 0, -90};
+        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
         shotDelay = shotDelayTmp;
         shotLimit--;
     }

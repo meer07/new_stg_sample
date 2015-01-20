@@ -84,12 +84,13 @@ void Boss01::Shot(cocos2d::Point nowPoint)
     // ミサイル発射
     if (static_cast<int>(shotDelay) % 30 == 0)
     {
-        float shotParam[5] = {5, 2, 0, 30, 0};
+        float shotParam[5] = {10, 0, 0, 30, 0};
         
         for (int i = 0; i < 2; i++)
         {
             shotParam[2] = 180 * i;
-            EnemyMissle *missle = EnemyMissle::create(shotParam, "missle.png");
+            std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("missle.png");
+            EnemyMissle *missle = EnemyMissle::create(shotParam, fullpath);
             missle->setPosition(nowPoint.x, nowPoint.y);
             TaskManager::getInstance().AddEnemyTask(*missle);
         }
@@ -122,7 +123,8 @@ void Boss01::MainShot(float baseAngle)
 void Boss01::RotateShot(float angle)
 {
     float shotParam[3] = {5, 1, angle};
-    TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
+    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+    TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
 }
 
 void Boss01::Destroy(){
