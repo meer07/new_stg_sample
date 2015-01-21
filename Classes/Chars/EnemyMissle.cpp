@@ -80,4 +80,5 @@ void EnemyMissle::Collision()
 
 void EnemyMissle::Destroy()
 {
+    Mover::Destroy();
 }

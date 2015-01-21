@@ -11,14 +11,21 @@
 #include "../cocos2d/cocos/editor-support/cocostudio/CocoStudio.h"
 #include <string>
 
+UIManager& UIManager::getIncetance()
+{
+    static UIManager instance;
+    return instance;
+}
+
 UIManager::UIManager()
 {
 }
 
 void UIManager::setTitleScene(cocos2d::Layer& sceneLayer)
 {
+    cocos2d::CSLoader::getInstance()->setRecordJsonPath(true);
     std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("titlescene.csb");
-    sceneNode = cocos2d::CSLoader::getInstance()->createNodeWithFlatBuffersFile(fullpath);
+    sceneNode = cocos2d::CSLoader::getInstance()->createNodeWithFlatBuffersFile("/Users/naoya-kaige/Desktop/SimpleSTG/Resources/titlescene.csb");
     sceneLayer.addChild(sceneNode);
 }
 

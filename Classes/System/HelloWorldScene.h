@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "GameScene.h"
 #include "BackGround.h"
-#include "UIManager.h"
+
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -25,7 +25,6 @@ private:
     cocos2d::Node *UINode;
     GameScene *gameScene;
     BackGround *background;
-    UIManager *uiManager;
     cocos2d::Point startPoint, endPoint;
 };
 

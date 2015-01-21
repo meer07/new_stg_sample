@@ -28,8 +28,12 @@ bool TitleScene::init()
     
     cocos2d::Size windowSize = Director::getInstance()->getWinSize();
     
+    /*
     UIManager *uiManager = new UIManager();
     uiManager->setTitleScene(*this);
+     */
+    UIManager::getIncetance().setTitleScene(*this);
+    
     gameStart();
     
     return true;

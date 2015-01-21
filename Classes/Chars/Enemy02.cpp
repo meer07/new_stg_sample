@@ -75,4 +75,5 @@ void Enemy02::MovePattern(){
 
 void Enemy02::Destroy()
 {
+    Mover::Destroy();
 }

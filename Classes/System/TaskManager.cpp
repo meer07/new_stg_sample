@@ -54,7 +54,6 @@ void TaskManager::DoTask(std::vector<Mover *> &list, cocos2d::Layer &sceneLayer)
         // 生存フラグが負であるとき削除
         if ((*i)->isAlive == false)
         {
-            (*i)->Destroy();
             sceneLayer.removeChild(*i);
             list.erase(std::remove(list.begin(), list.end(), *i),list.end());
         }
@@ -81,7 +80,7 @@ void TaskManager::BulletCollistion(Mover *bullet)
             // HPが0の時、生存フラグを下ろす。
             if ((*i)->hitpoint < 0)
             {
-                (*i)->isAlive = false;
+                (*i)->Destroy();
                 GameData::getInstance().score += (*i)->score;
             }
             bullet->isAlive = false;

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "GameData.h"
 #include "TaskManager.h"
+#include "UIManager.h"
 
 USING_NS_CC;
 
@@ -29,14 +30,14 @@ bool HelloWorld::init()
         return false;
     }
     
+    
     windowSize = Director::getInstance()->getWinSize();
     TaskManager::getInstance().sceneLayer = this;
     
     background = new BackGround(windowSize, *this);
-    uiManager = new UIManager();
     gameScene = new GameScene();
     
-    uiManager->setGameScene(*this);
+    UIManager::getIncetance().setGameScene(*this);
     PlayerSet(windowSize);
     this->scheduleUpdate();
     
@@ -61,7 +62,7 @@ void HelloWorld::update(float frame)
     TaskManager::getInstance().DoTask(TaskManager::getInstance().enemyManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().bulletManager, *this);
     TaskManager::getInstance().DoTask(TaskManager::getInstance().playerBulletManager, *this);
-    uiManager->updateUI();
+    UIManager::getIncetance().updateUI();
 }
 
 void HelloWorld::PlayerSet(Size windowSize)

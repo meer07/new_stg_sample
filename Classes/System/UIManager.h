@@ -16,7 +16,11 @@ public:
     cocos2d::Node *sceneNode;
     cocos2d::Label *score, *zanki;
     
+    static UIManager& getIncetance();
+    
     UIManager();
+    UIManager(const UIManager &other){};
+    UIManager &operator=(const UIManager &other){};
     ~UIManager();
     void setTitleScene(cocos2d::Layer& sceneLayer);
     void setGameScene(cocos2d::Layer& sceneLayer);

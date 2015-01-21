@@ -7,6 +7,9 @@
 //
 
 #include "Mover.h"
+#include "EffectManager.h"
+#include <string>
+#include <iostream>
 
 // 共通の移動処理
 void Mover::MoveBase()
@@ -27,4 +30,23 @@ void Mover::MoveBase()
     {
         isAlive = false;
     }
+}
+
+void Mover::Destroy()
+{
+    this->isAlive = false;
+    
+    cocos2d::Sprite *bom = cocos2d::Sprite::create();
+    bom->setPosition(this->getPosition());
+    this->getScene()->addChild(bom);
+    
+    cocos2d::Animate *animate = EffectManager::getInstance().DestroyEffect();
+    
+    // 爆発の終わりに生存フラグを下ろす
+    cocos2d::CallFunc *func = cocos2d::CallFunc::create([this, bom](){
+        bom->getScene()->removeChild(bom);
+    });
+    
+    bom->runAction(cocos2d::Sequence::create(animate, func, NULL));
+    //bom->runAction(animate);
 }

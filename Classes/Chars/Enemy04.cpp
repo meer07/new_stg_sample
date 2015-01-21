@@ -71,6 +71,7 @@ void Enemy04::MovePattern(float rotateAngle){
 
 void Enemy04::Destroy()
 {
+    Mover::Destroy();
 }
 
 float Enemy04::rotate()
