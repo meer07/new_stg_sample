@@ -1,14 +1,4 @@
-//
-//  Bullet.h
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
-#ifndef __Getsuyoubi__Bullet__
-#define __Getsuyoubi__Bullet__
-
+#pragma once
 #include "Mover.h"
 
 class Bullet : public Mover
@@ -18,4 +8,3 @@ public:
     void Move();
     void Collision();
 };
-#endif /* defined(__Getsuyoubi__Bullet__) */

@@ -1,14 +1,4 @@
-//
-//  Player.h
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
-#ifndef __Getsuyoubi__Player__
-#define __Getsuyoubi__Player__
-
+#pragma once
 #include "Mover.h"
 
 class Player : public Mover
@@ -27,4 +17,4 @@ public:
     void Shot();
     void Destroy();
 };
-#endif /* defined(__Getsuyoubi__Player__) */
+

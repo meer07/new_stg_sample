@@ -1,14 +1,4 @@
-//
-//  GameData.h
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/14.
-//
-//
-
-#ifndef __Getsuyoubi__GameData__
-#define __Getsuyoubi__GameData__
-
+#pragma once
 #include <cocos2d.h>
 
 class GameData {
@@ -24,4 +14,4 @@ public:
     
     void ShowScore(cocos2d::Size windowSize);
 };
-#endif /* defined(__Getsuyoubi__GameData__) */
+

@@ -30,6 +30,7 @@ bool HelloWorld::init()
         return false;
     }
     
+    cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprite.plist");
     
     windowSize = Director::getInstance()->getWinSize();
     TaskManager::getInstance().sceneLayer = this;

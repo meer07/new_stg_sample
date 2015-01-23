@@ -1,11 +1,3 @@
-//
-//  EffectManager.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/21.
-//
-//
-
 #include "EffectManager.h"
 #include <string>
 
@@ -19,7 +11,7 @@ EffectManager::EffectManager(){}
 
 cocos2d::Animate* EffectManager::DestroyEffect()
 {
-    cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("boms.plist");
+    //cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("boms.plist");
     
     cocos2d::Vector<cocos2d::SpriteFrame *> animframes(8);
     

@@ -1,12 +1,6 @@
-//
-//  Boss01.cpp
-//  Getsuyoubi
-//
-//  Created by 海下直哉 on 2015/01/12.
-//
-//
-
 #include "Boss01.h"
+#include "Bullet.h"
+#include "TaskManager.h"
 #include "EnemyMissle.h"
 #include "GameData.h"
 
@@ -89,8 +83,8 @@ void Boss01::Shot(cocos2d::Point nowPoint)
         for (int i = 0; i < 2; i++)
         {
             shotParam[2] = 180 * i;
-            std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("missle.png");
-            EnemyMissle *missle = EnemyMissle::create(shotParam, fullpath);
+            //std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("missle.png");
+            EnemyMissle *missle = EnemyMissle::create(shotParam, "missle.png");
             missle->setPosition(nowPoint.x, nowPoint.y);
             TaskManager::getInstance().AddEnemyTask(*missle);
         }

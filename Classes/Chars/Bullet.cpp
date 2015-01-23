@@ -1,11 +1,3 @@
-//
-//  Bullet.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//  実装内容:敵弾の実装
-
 #include "Bullet.h"
 #include "TaskManager.h"
 #include "GameData.h"
@@ -19,7 +11,7 @@ Bullet* Bullet::create(const float param[], std::string fileName)
     bullet->isAlive = true;
     bullet->setTag(3);
     
-    if (bullet && bullet->initWithFile(fileName))
+    if (bullet && bullet->initWithSpriteFrameName(fileName))
     {
         bullet->autorelease();
         bullet->retain();

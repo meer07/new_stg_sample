@@ -8,6 +8,8 @@
 
 #include "GameScene.h"
 #include "GameData.h"
+#include "UIManager.h"
+#include "TaskManager.h"
 #include "Boss01.h"
 #include "Boss02.h"
 #include <random>
@@ -21,8 +23,10 @@ void GameScene::Scene01(cocos2d::Size windowSize)
 {
     float second = GameData::getInstance().frame / 60;
     GameData::getInstance().frame++;
-    
-    if (second == 10) // 10秒後からスタート
+    if (second == 1) {
+        UIManager::getIncetance().setLevelLabel(1, *TaskManager::getInstance().sceneLayer);
+    }
+    else if (second == 10)
     {
         Pattern03(windowSize.width / 5);
     }

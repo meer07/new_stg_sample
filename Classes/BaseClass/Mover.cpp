@@ -1,15 +1,6 @@
-//
-//  Mover.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
 #include "Mover.h"
+#include <math.h>
 #include "EffectManager.h"
-#include <string>
-#include <iostream>
 
 // 共通の移動処理
 void Mover::MoveBase()

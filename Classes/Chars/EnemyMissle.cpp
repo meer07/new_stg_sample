@@ -1,14 +1,5 @@
-//
-//  EnemyMissle.cpp
-//  Getsuyoubi
-//
-//  Created by 海下直哉 on 2015/01/12.
-//
-//
-
 #include "EnemyMissle.h"
 #include "TaskManager.h"
-#include <iostream>
 
 EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
 {
@@ -30,7 +21,7 @@ EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
     
     missle->setRotation(missle->angle);
     
-    if (missle && missle->initWithFile(fileName)) {
+    if (missle && missle->initWithSpriteFrameName(fileName)) {
         missle->autorelease();
         missle->retain();
         return missle;

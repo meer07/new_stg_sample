@@ -1,12 +1,6 @@
-//
-//  Boss02.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/16.
-//
-//
-
 #include "Boss02.h"
+#include "Bullet.h"
+#include "TaskManager.h"
 #include "EnemyMissle.h"
 
 Boss02* Boss02::create(std::string fileName)
@@ -63,7 +57,7 @@ void Boss02::MovePattern(cocos2d::Point nowPoint)
 
 void Boss02::Shot()
 {
-    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+    //std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
     if (shotDelay > 30 && shotDelay < 100)
     {
         // 15秒毎に発射
@@ -72,13 +66,13 @@ void Boss02::Shot()
             if(shotFlag)
             {
                 float shotAngles[4] = {-30, -10, 10, 30};
-                MainShot(shotAngles, 8, 4, fullpath);
+                MainShot(shotAngles, 8, 4, "enemy_bullet01.png");
                 shotFlag = false;
             }
             else
             {
                 float shotAngles[5] = {-40, -20, 0, 20, 40};
-                MainShot(shotAngles, 8, 5, fullpath);
+                MainShot(shotAngles, 8, 5, "enemy_bullet01.png");
                 shotFlag = true;
             }
         }
@@ -88,7 +82,7 @@ void Boss02::Shot()
         if (static_cast<int>(shotDelay) % 10 == 0) {
             bulletAngle = MakeAngle();
             float shotAngles[1] = {0};
-            MainShot(shotAngles, 10, 1, fullpath);
+            MainShot(shotAngles, 10, 1, "enemy_bullet01.png");
         }
     }
     else if(shotDelay > 250)

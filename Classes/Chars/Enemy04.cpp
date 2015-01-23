@@ -1,12 +1,6 @@
-//
-//  Enemy04.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/19.
-//
-//
-
 #include "Enemy04.h"
+#include "Bullet.h"
+#include "TaskManager.h"
 
 Enemy04* Enemy04::create(const float enemyParam[], const float shotParam[], std::string fileName){
     Enemy04 *enemy = new Enemy04();
@@ -29,7 +23,7 @@ Enemy04* Enemy04::create(const float enemyParam[], const float shotParam[], std:
     //enemy->moveLimit = shotParam[3];
     
     
-    if (enemy && enemy->initWithFile(fileName)) {
+    if (enemy && enemy->initWithSpriteFrameName(fileName)) {
         enemy->autorelease();
         enemy->retain();
         return enemy;
@@ -50,8 +44,8 @@ void Enemy04::Move(){
 void Enemy04::Shot(float rotateAngle){
     if (shotDelay <= 0 && shotLimit > 0) {
         float shotParam[3] = {5, 0, rotateAngle};
-        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
-        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
+        //std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
         
         shotDelay = shotDelayTmp;
         shotLimit--;

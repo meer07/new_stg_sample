@@ -1,11 +1,3 @@
-//
-//  PlayerBullet.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//  
-
 #include "PlayerBullet.h"
 #include "TaskManager.h"
 #include <iostream>
@@ -19,7 +11,7 @@ PlayerBullet* PlayerBullet::create(float speed, float speedRate, float angle, st
     bullet->isAlive = true;
     bullet->setTag(2);
     
-    if (bullet && bullet->initWithFile(fileName))
+    if (bullet && bullet->initWithSpriteFrameName(fileName))
     {
         bullet->autorelease();
         bullet->retain();

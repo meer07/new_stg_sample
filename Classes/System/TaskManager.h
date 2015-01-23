@@ -1,14 +1,4 @@
-//
-//  TaskManager.h
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
-#ifndef __Getsuyoubi__TaskManager__
-#define __Getsuyoubi__TaskManager__
-
+#pragma once
 #include <cocos2d.h>
 #include <vector>
 #include "Mover.h"
@@ -32,4 +22,3 @@ public:
     void DoTask(std::vector<Mover *> &list, cocos2d::Layer &sceneLayer);
     void BulletCollistion(Mover *bullet);
 };
-#endif /* defined(__Getsuyoubi__TaskManager__) */

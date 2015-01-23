@@ -1,11 +1,3 @@
-//
-//  TitleScene.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/20.
-//
-//
-
 #include "TitleScene.h"
 #include "UIManager.h"
 #include "HelloWorldScene.h"

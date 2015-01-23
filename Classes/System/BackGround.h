@@ -1,14 +1,4 @@
-//
-//  BackGround.h
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/16.
-//
-//
-
-#ifndef __Getsuyoubi__BackGround__
-#define __Getsuyoubi__BackGround__
-
+#pragma once
 #include <cocos2d.h>
 
 class BackGround : public cocos2d::Sprite {
@@ -22,5 +12,3 @@ public:
 private:
     cocos2d::Size windowSize;
 };
-
-#endif /* defined(__Getsuyoubi__BackGround__) */

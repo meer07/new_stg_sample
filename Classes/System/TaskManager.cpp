@@ -1,11 +1,3 @@
-//
-//  TaskManager.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
 #include "TaskManager.h"
 #include "GameData.h"
 #include <iostream>

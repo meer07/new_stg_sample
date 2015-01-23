@@ -1,13 +1,6 @@
-//
-//  UIManager.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/20.
-//
-//
-
 #include "UIManager.h"
 #include "GameData.h"
+#include "TaskManager.h"
 #include "../cocos2d/cocos/editor-support/cocostudio/CocoStudio.h"
 #include <string>
 
@@ -44,6 +37,24 @@ void UIManager::setGameScene(cocos2d::Layer& sceneLayer)
     zanki->setPosition(windowSize.width-50, windowSize.height-50);
     sceneLayer.addChild(score);
     sceneLayer.addChild(zanki);
+}
+
+void UIManager::setLevelLabel(const int level, cocos2d::Layer& sceneLayer)
+{
+    cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
+    std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
+    std::string labelText = "Level " + std::to_string(level);
+    
+    auto levelLabel = cocos2d::Label::createWithTTF(labelText, fullPath, 72);
+    levelLabel->setPosition(windowSize.width/2, windowSize.height/2);
+    sceneLayer.addChild(levelLabel);
+    
+    cocos2d::CallFunc *func = cocos2d::CallFunc::create([this, levelLabel](){
+        //levelLabel->getScene()->removeChild(levelLabel);
+        TaskManager::getInstance().sceneLayer->removeChild(levelLabel);
+    });
+
+    levelLabel->runAction(cocos2d::Sequence::create(cocos2d::DelayTime::create(5), func ,NULL));
 }
 
 void UIManager::updateUI()

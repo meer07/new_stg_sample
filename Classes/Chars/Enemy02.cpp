@@ -1,11 +1,3 @@
-//
-//  Enemy02.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/07.
-//
-//
-
 #include "Enemy02.h"
 #include "Bullet.h"
 #include "TaskManager.h"
@@ -30,7 +22,7 @@ Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std:
     //enemy->moveLimit = shotParam[3];
     
     
-    if (enemy && enemy->initWithFile(fileName)) {
+    if (enemy && enemy->initWithSpriteFrameName(fileName)) {
         enemy->autorelease();
         enemy->retain();
         return enemy;
@@ -54,8 +46,8 @@ void Enemy02::Shot(){
         float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
         float shotParam[3] = {8, 0, bulletAngle};
         
-        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
-        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, fullpath), this->getPosition());
+        //std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet01.png");
+        TaskManager::getInstance().AddBulletTask(TaskManager::getInstance().bulletManager, Bullet::create(shotParam, "enemy_bullet01.png"), this->getPosition());
         
         shotDelay = shotDelayTmp;
         shotLimit--;

@@ -1,11 +1,3 @@
-//
-//  Player.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
 #include "Player.h"
 #include "PlayerBullet.h"
 #include "TaskManager.h"
@@ -24,8 +16,8 @@ Player* Player::create(cocos2d::Layer *sceneLayer_)
     player->frame = 120;
     player->muteki = false;
 
-    std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("player.png");
-    if (player && player->initWithFile(fullpath))
+    //std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("player.png");
+    if (player && player->initWithSpriteFrameName("player.png"))
     {
         player->autorelease();
         player->retain();
@@ -39,14 +31,23 @@ Player* Player::create(cocos2d::Layer *sceneLayer_)
 void Player::Move()
 {
     Shot();
+    
+    if (muteki) {
+        frame--;
+    }
+    
+    if (frame < 0) {
+        frame = 120;
+        muteki = false;
+    }
 }
 
 void Player::Shot()
 {
     if (shotDelay <= 0)
     {
-        std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet02.png");
-        PlayerBullet *bullet = PlayerBullet::create(shotSpeed, shotSpeedRate, shotAngle, fullpath);
+        //std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("enemy_bullet02.png");
+        PlayerBullet *bullet = PlayerBullet::create(shotSpeed, shotSpeedRate, shotAngle, "enemy_bullet02.png");
         bullet->setPosition(Player::getPosition().x, Player::getPosition().y);
         TaskManager::getInstance().sceneLayer->addChild(bullet);
         TaskManager::getInstance().playerBulletManager.push_back(std::move(bullet));
@@ -63,12 +64,5 @@ void Player::Destroy()
     if (!muteki) {
         GameData::getInstance().playerHp -= 1;
         muteki = true;
-    }else{
-        frame--;
-    }
-    
-    if (frame < 0) {
-        muteki = false;
-        frame = 120; // 2秒
     }
 }

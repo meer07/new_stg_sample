@@ -1,16 +1,5 @@
-//
-//  Mover.h
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/05.
-//
-//
-
-#ifndef __Getsuyoubi__Mover__
-#define __Getsuyoubi__Mover__
-
+#pragma once // 二重展開防止
 #include <cocos2d.h>
-#include <math.h>
 
 class Mover : public cocos2d::Sprite
 {
@@ -23,12 +12,11 @@ public:
     bool isAlive;
     
     // 仮想メソッド
-    virtual void MovePattern(){};
     virtual void Move(){};
     virtual void Collision(){};
     virtual void Destroy();
     
 protected:
+    virtual void MovePattern(){};
     void MoveBase();
 };
-#endif /* defined(__Getsuyoubi__Mover__) */

@@ -1,14 +1,4 @@
-//
-//  GameScene.h
-//  Getsuyoubi
-//
-//  Created by 海下直哉 on 2015/01/08.
-//
-//
-
-#ifndef __Getsuyoubi__GameScene__
-#define __Getsuyoubi__GameScene__
-
+#pragma once
 #include <cocos2d.h>
 #include "EnemyPattern.h"
 
@@ -30,5 +20,3 @@ private:
     void Pattern06(float pointY);
 
 };
-
-#endif /* defined(__Getsuyoubi__GameScene__) */

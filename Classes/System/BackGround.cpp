@@ -1,11 +1,3 @@
-//
-//  BackGround.cpp
-//  Getsuyoubi
-//
-//  Created by 海下 直哉 on 2015/01/16.
-//
-//
-
 #include "BackGround.h"
 
 BackGround::BackGround(cocos2d::Size windowSize_, cocos2d::Layer &sceneLayer)
