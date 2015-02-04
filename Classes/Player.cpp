@@ -14,6 +14,7 @@ Player* Player::create(cocos2d::Layer *sceneLayer_)
     player->shotDelay = 0;
     player->isAlive = true;
     player->setTag(1);
+    player->setName("Player");
     player->frame = 60;
     
     if (player && player->initWithSpriteFrameName("player.png"))

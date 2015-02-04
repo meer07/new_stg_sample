@@ -16,6 +16,7 @@ Boss02* Boss02::create(std::string fileName)
     boss->angleRate = 0;
     boss->isAlive = true;
     boss->setTag(4);
+    boss->setName("Boss02");
     
     // ショットのパラメータ
     boss->shotDelay = 0;
@@ -210,7 +211,7 @@ void Boss02::MainShot01(float shotAngles[], float shotSpeed, float pointX, int w
     for (int a = 0; a < way; a++)
     {
        // float shotParam[3] = {shotSpeed, 0, shotAngles[a] + bulletAngle};
-		auto bullet = TaskManager::getInstance()->GetEnemyBullet();
+        auto bullet = GetBullet("enemy_bullet01.png");
         cocos2d::Point point = this->getPosition();
         point = cocos2d::Point(point.x + pointX, point.y);
 		bullet->speed = shotSpeed;
@@ -224,7 +225,7 @@ void Boss02::MainShot01(float shotAngles[], float shotSpeed, float pointX, int w
 
 float Boss02::MakeAngle()
 {
-    cocos2d::Vec2 playerPosition = TaskManager::getInstance()->player->getPosition();
+    cocos2d::Vec2 playerPosition = TaskManager::player->getPosition();
     cocos2d::Vec2 enemyPosition = this->getPosition();
     return  CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
 }

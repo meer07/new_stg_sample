@@ -12,6 +12,7 @@ Meteorite* Meteorite::create(const float enemyParam[], std::string fileName)
     meteorite->angleRate = enemyParam[3];
     meteorite->isAlive = true;
     meteorite->setTag(4);
+    meteorite->setName("Meteorite");
     
     if (meteorite && meteorite->initWithSpriteFrameName(fileName)) {
         meteorite->autorelease();

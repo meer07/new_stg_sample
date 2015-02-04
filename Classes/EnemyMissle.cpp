@@ -13,6 +13,7 @@ EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
     missle->angle = param[2];
     missle->isAlive = true;
     missle->setTag(4);
+    missle->setName("EnemyMissle");
     
     missle->moveDelay = param[3];
     missle->angleRange = param[4];
@@ -59,7 +60,7 @@ void EnemyMissle::MovePattern()
 
 void EnemyMissle::Collision()
 {
-    if (this->positionId == TaskManager::player->positionId) {
+    //if (this->positionId == TaskManager::player->positionId) {
         cocos2d::Rect bulletrect = this->boundingBox();
         cocos2d::Rect playerrect = TaskManager::player->boundingBox();
     
@@ -68,7 +69,7 @@ void EnemyMissle::Collision()
             TaskManager::player->isAlive = false;
             this->isAlive = false;
         }
-    }
+    //}
 }
 
 void EnemyMissle::Destroy()

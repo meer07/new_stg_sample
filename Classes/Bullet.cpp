@@ -11,6 +11,7 @@ Bullet* Bullet::create(const float param[], std::string fileName)
     bullet->angle = param[2];
     bullet->isAlive = true;
     bullet->setTag(3);
+    bullet->setName("Bullet");
     
     if (bullet && bullet->initWithSpriteFrameName(fileName))
     {

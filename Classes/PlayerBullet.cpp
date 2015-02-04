@@ -33,7 +33,7 @@ void PlayerBullet::Collision()
     std::vector<Mover *>::iterator i;
     for(i = TaskManager::objectContainer.begin(); i != TaskManager::objectContainer.end(); ++i){
         //  エリアが一緒のときのみ衝突判定
-        if ((*i)->positionId == this->positionId) {
+        //if ((*i)->positionId == this->positionId) {
             cocos2d::Rect bulletrect = this->boundingBox();
             cocos2d::Rect enemyrect = (*i)->boundingBox();
             
@@ -49,7 +49,7 @@ void PlayerBullet::Collision()
                 }
                 this->isAlive = false;
             }
-        }
+        //}
     }
 }
 

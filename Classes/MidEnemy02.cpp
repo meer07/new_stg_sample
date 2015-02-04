@@ -15,6 +15,7 @@ MidEnemy02* MidEnemy02::create(const float enemyParam[], const float shotParam[]
 	enemy->angleRate = enemyParam[3];
 	enemy->isAlive = true;
 	enemy->setTag(4);
+    enemy->setName("MidEnemy02");
 
 	// ショットのパラメータ
 	enemy->shotDelay = 0;

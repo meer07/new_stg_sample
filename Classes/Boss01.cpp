@@ -16,6 +16,7 @@ Boss01* Boss01::create(std::string fileName)
     boss->angleRate = 0;
     boss->isAlive = true;
     boss->setTag(4);
+    boss->setName("Boss01");
     
     // ショットのパラメータ
     boss->shotDelay = 120;
@@ -86,7 +87,8 @@ void Boss01::Shot(cocos2d::Point nowPoint)
             EnemyMissle *missle = EnemyMissle::create(shotParam, "missle.png");
             missle->positionId = nowPoint.y/512;
             missle->setPosition(nowPoint.x, nowPoint.y);
-            TaskManager::getInstance()->AddEnemyTask(*missle);
+            this->getScene()->addChild(missle);
+            TaskManager::objectContainer.push_back(missle);
         }
     }
     else if((int)shotDelay % 10 == 0) // メインショット発射
@@ -117,7 +119,7 @@ void Boss01::MainShot(float baseAngle)
 void Boss01::RotateShot(float angle)
 {
     //float shotParam[3] = {5, 1, angle};
-	auto bullet = TaskManager::getInstance()->GetEnemyBullet();
+	auto bullet = GetBullet("enemy_bullet01.png");
     cocos2d::Point point = this->getPosition();
 	bullet->speed = 5;
 	bullet->speedRate = 1;

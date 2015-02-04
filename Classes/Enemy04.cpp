@@ -14,6 +14,7 @@ Enemy04* Enemy04::create(const float enemyParam[], const float shotParam[], std:
     enemy->angleRate = enemyParam[3];
     enemy->isAlive = true;
     enemy->setTag(4);
+    enemy->setName("Enemy04");
     
     // ショットのパラメータ
     enemy->shotDelay = 60;

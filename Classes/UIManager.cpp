@@ -15,7 +15,7 @@ void UIManager::SetTitleScene(cocos2d::Layer& sceneLayer)
 {
     cocos2d::CSLoader::getInstance()->setRecordJsonPath(true);
     std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("TitleScene.csb");
-    sceneNode = cocos2d::CSLoader::getInstance()->createNodeWithFlatBuffersFile(fullpath);
+    cocos2d::Node *sceneNode = cocos2d::CSLoader::getInstance()->createNodeWithFlatBuffersFile(fullpath);
     sceneLayer.addChild(sceneNode);
 }
 
@@ -38,7 +38,7 @@ void UIManager::SetGameScene(cocos2d::Layer& sceneLayer)
 }
 
 // ステージの最初に何面か表示する
-void UIManager::SetLevelLabel(const int level)
+void UIManager::SetLevelLabel(const int level, cocos2d::Layer& sceneLayer)
 {
     cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
@@ -46,17 +46,17 @@ void UIManager::SetLevelLabel(const int level)
     
     auto levelLabel = cocos2d::Label::createWithTTF(labelText, fullPath, 72);
     levelLabel->setPosition(windowSize.width/2, windowSize.height/2);
-	TaskManager::getInstance()->sceneLayer->addChild(levelLabel);
+	sceneLayer.addChild(levelLabel);
     
-    cocos2d::CallFunc *func = cocos2d::CallFunc::create([this, levelLabel](){
-        TaskManager::getInstance()->sceneLayer->removeChild(levelLabel);
+    cocos2d::CallFunc *func = cocos2d::CallFunc::create([this, levelLabel, &sceneLayer](){
+        sceneLayer.removeChild(levelLabel);
     });
 
     levelLabel->runAction(cocos2d::Sequence::create(cocos2d::DelayTime::create(5), func ,NULL));
 }
 
 // ゲーム全てクリアしたことを表示する
-void UIManager::SetClearLabel()
+void UIManager::SetClearLabel(cocos2d::Layer& sceneLayer)
 {
 	cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
 	std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
@@ -64,20 +64,20 @@ void UIManager::SetClearLabel()
 
 	auto label = cocos2d::Label::createWithTTF(labelText, fullPath, 72);
 	label->setPosition(windowSize.width / 2, windowSize.height / 2);
-	TaskManager::getInstance()->sceneLayer->addChild(label);
+	sceneLayer.addChild(label);
 
-	cocos2d::CallFunc *func = cocos2d::CallFunc::create([this, label](){
-		TaskManager::getInstance()->sceneLayer->removeChild(label);
+	cocos2d::CallFunc *func = cocos2d::CallFunc::create([this, label, &sceneLayer](){
+		sceneLayer.removeChild(label);
 	});
 
-	cocos2d::CallFunc *end = cocos2d::CallFunc::create([this, label](){
-		TaskManager::getInstance()->sceneLayer->removeChild(label);
+	cocos2d::CallFunc *end = cocos2d::CallFunc::create([this, label, &sceneLayer](){
+		sceneLayer.removeChild(label);
 	});
 
 	label->runAction(cocos2d::Sequence::create(cocos2d::DelayTime::create(10), func, end, NULL));
 }
 
-void UIManager::SetGameOver()
+void UIManager::SetGameOver(cocos2d::Layer& sceneLayer)
 {
     cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
@@ -85,7 +85,7 @@ void UIManager::SetGameOver()
     
     auto label = cocos2d::Label::createWithTTF(labelText, fullPath, 72);
     label->setPosition(windowSize.width / 2, windowSize.height / 2);
-    TaskManager::getInstance()->sceneLayer->addChild(label);
+    sceneLayer.addChild(label);
 }
 
 // スコアと残機の表示を更新
