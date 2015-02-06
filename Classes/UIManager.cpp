@@ -11,7 +11,7 @@ UIManager& UIManager::getIncetance()
 }
 
 // タイトルのシーンを設定
-void UIManager::SetTitleScene(cocos2d::Layer& sceneLayer)
+void UIManager::SetTitleScene(cocos2d::Scene& sceneLayer)
 {
     cocos2d::CSLoader::getInstance()->setRecordJsonPath(true);
     std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("TitleScene.csb");
@@ -20,7 +20,7 @@ void UIManager::SetTitleScene(cocos2d::Layer& sceneLayer)
 }
 
 // ゲーム本編のUI(スコアと残機)を設定
-void UIManager::SetGameScene(cocos2d::Layer& sceneLayer)
+void UIManager::SetGameScene(cocos2d::Scene& sceneLayer)
 {
     cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
     std::string fullpath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
@@ -38,7 +38,7 @@ void UIManager::SetGameScene(cocos2d::Layer& sceneLayer)
 }
 
 // ステージの最初に何面か表示する
-void UIManager::SetLevelLabel(const int level, cocos2d::Layer& sceneLayer)
+void UIManager::SetLevelLabel(const int level, cocos2d::Scene& sceneLayer)
 {
     cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
@@ -56,7 +56,7 @@ void UIManager::SetLevelLabel(const int level, cocos2d::Layer& sceneLayer)
 }
 
 // ゲーム全てクリアしたことを表示する
-void UIManager::SetClearLabel(cocos2d::Layer& sceneLayer)
+void UIManager::SetClearLabel(cocos2d::Scene& sceneLayer)
 {
 	cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
 	std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");
@@ -77,7 +77,7 @@ void UIManager::SetClearLabel(cocos2d::Layer& sceneLayer)
 	label->runAction(cocos2d::Sequence::create(cocos2d::DelayTime::create(10), func, end, NULL));
 }
 
-void UIManager::SetGameOver(cocos2d::Layer& sceneLayer)
+void UIManager::SetGameOver(cocos2d::Scene& sceneLayer)
 {
     cocos2d::Size windowSize = cocos2d::Director::getInstance()->getWinSize();
     std::string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("PixelMplus12-Bold.ttf");

@@ -3,28 +3,25 @@
 #include "Bullet.h"
 #include <string.h>
 
-Enemy03* Enemy03::create(const float enemyParam[], const float shotParam[],std::string fileName)
+Enemy03* Enemy03::create(const float enemyParam[], std::string fileName)
 {
     Enemy03 *enemy = new Enemy03();
     
     // 敵本体のパラメータ
     enemy->hitpoint = 20;
     enemy->score = 150;
-    enemy->speed = enemyParam[0];
-    enemy->speedRate = enemyParam[1];
-    enemy->angle = enemyParam[2];
-    enemy->angleRate = enemyParam[3];
+    enemy->setParam(enemyParam);
     enemy->isAlive = true;
     enemy->setTag(4);
     enemy->setName("Enemy03");
     
     // ショットのパラメータ
-    enemy->shotDelay = enemy->shotDelayTmp = shotParam[0];
-    enemy->shotLimit = shotParam[1];
+    enemy->shotDelay = 90;
+    enemy->shotDelayTmp = 60;
+    enemy->shotLimit = 5;
     
     // 移動アニメーションのパラメータ
-    enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
-    //enemy->moveLimit = shotParam[3];
+    enemy->moveDelay = enemy->moveDelayTmp = 0;
     
     enemy->flag = false;
     

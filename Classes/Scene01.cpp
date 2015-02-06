@@ -15,11 +15,14 @@
 #include "Boss01.h"
 #include "Bullet.h"
 #include "PlayerBullet.h"
+#include "UIManager.h"
+
+const float delays[60] = {60*9, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60};
 
 void Scene01::Init(cocos2d::Layer &layer)
 {
     taskManager = new TaskManager();
-    frame = 0;
+    delay = 60;
     taskManager->objectContainer.reserve(500);
     
     int i = 0;
@@ -37,16 +40,73 @@ void Scene01::Init(cocos2d::Layer &layer)
 
 void Scene01::RunScene()
 {
-    frame++;
     
-    if (frame == 60)
+    if (delay < 0)
     {
-        
+        switch (count)
+        {
+            case 0:
+            {
+                UIManager::getIncetance().SetLevelLabel(1, *(cocos2d::Director::getInstance()->getRunningScene()));
+                delay = delays[count];
+                break;
+            }
+            case 1:
+            {
+                auto enemy01 = PopEnemy(2, "Enemy02");
+                float param01[4] = {6, -0.05f, 270, 0};
+                SetEnemyParam(enemy01, cocos2d::Point(800/5,1280), param01);
+                delay = delays[count];
+                break;
+            }
+            case 2:
+            {
+                auto enemy02 = PopEnemy(2, "Enemy02");
+                float param02[4] = {6, -0.05f, 270, 0};
+                SetEnemyParam(enemy02, cocos2d::Point(800*2/5,1280), param02);
+                delay = delays[count];
+                break;
+            }
+            case 3:
+            {
+                auto enemy02 = PopEnemy(2, "Enemy02");
+                float param02[4] = {6, -0.05f, 270, 0};
+                SetEnemyParam(enemy02, cocos2d::Point(800*3/5,1280), param02);
+                delay = delays[count];
+                break;
+            }
+            case 4:
+            {
+                auto enemy02 = PopEnemy(2, "Enemy02");
+                float param02[4] = {6, -0.05f, 270, 0};
+                SetEnemyParam(enemy02, cocos2d::Point(800*4/5,1280), param02);
+                delay = delays[count];
+                break;
+            }
+            case 5:
+            {
+                
+                break;
+            }
+
+        }
+        count++;
     }
-    else if ((frame > 60*2 && frame < 60*180) && frame % (60*5) == 0.0f)
+    else
     {
-        // 3秒に一回
+        delay--;
     }
+}
+
+Mover* Scene01::PopEnemy(const int enemyNum, const std::string enemyName)
+{
+    return GetEnemy(enemyNum, enemyName);
+}
+
+void SetEnemyParam(Mover *enemy, cocos2d::Point position, const float enemyParam[])
+{
+    enemy->setPosition(position);
+    enemy->setParam(enemyParam);
 }
 
 void Scene01::PushEnemy(cocos2d::Layer &layer)

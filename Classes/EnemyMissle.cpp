@@ -7,16 +7,13 @@ EnemyMissle* EnemyMissle::create(const float param[], std::string fileName)
     
     missle->hitpoint = 1;
     missle->score = 50;
-    missle->speed = param[0];
-    missle->moveLimit = param[1];
-    missle->speedRate = 0;
-    missle->angle = param[2];
     missle->isAlive = true;
+    missle->setParam(param);
     missle->setTag(4);
     missle->setName("EnemyMissle");
     
-    missle->moveDelay = param[3];
-    missle->angleRange = param[4];
+    missle->moveDelay = 60;
+    missle->angleRange = 0;
     
     missle->moveDelayTmp = 1;
     
@@ -46,7 +43,7 @@ void EnemyMissle::MovePattern()
         cocos2d::Vec2 playerPosition = TaskManager::player->getPosition();
         cocos2d::Vec2 enemyPosition = this->getPosition();
         float bulletAngle = CC_RADIANS_TO_DEGREES(atan2f(playerPosition.y - enemyPosition.y, playerPosition.x - enemyPosition.x));
-        this->setRotation(-bulletAngle - angleRange);
+        this->setRotation(-bulletAngle);
         angle = bulletAngle;
         
         moveDelay = moveDelayTmp;

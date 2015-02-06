@@ -4,7 +4,7 @@
 class Enemy02 : public Enemy
 {
 public:
-    static Enemy02* create(const float enemyParam[], const float shotParam[],std::string fileName);
+    static Enemy02* create(const float enemyParam[], std::string fileName);
     void Move();
     void Shot();
     void Destroy();

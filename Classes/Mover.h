@@ -10,12 +10,15 @@ public:
     float speed;
     float speedRate;
     float angle;
+    int angleRate;
     bool isAlive;
     
     // 仮想メソッド
     virtual void Move(){};
     virtual void Collision(){};
     virtual void Destroy();
+    
+    void setParam(const float param[]);
     
 protected:
     virtual void MovePattern(){};

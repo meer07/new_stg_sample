@@ -9,9 +9,9 @@ public:
     
     void SetTitleScene(cocos2d::Layer& sceneLayer);
     void SetGameScene(cocos2d::Layer& sceneLayer);
-    void SetLevelLabel(const int level, cocos2d::Layer& sceneLayer);
-	void SetClearLabel(cocos2d::Layer& sceneLayer);
-    void SetGameOver(cocos2d::Layer& sceneLayer);
+    void SetLevelLabel(const int level, cocos2d::Scene& sceneLayer);
+	void SetClearLabel(cocos2d::Scene& sceneLayer);
+    void SetGameOver(cocos2d::Scene& sceneLayer);
     void UpdateUI();
 
 private:

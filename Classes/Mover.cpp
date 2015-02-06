@@ -2,6 +2,15 @@
 #include <math.h>
 #include "EffectManager.h"
 
+void Mover::setParam(const float param[])
+{
+    speed = param[0];
+    speedRate = param[1];
+    angle = param[2];
+    angleRate = param[3];
+}
+
+
 // 共通の移動処理
 void Mover::MoveBase()
 {

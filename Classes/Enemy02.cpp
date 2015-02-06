@@ -2,24 +2,22 @@
 #include "Bullet.h"
 #include "TaskManager.h"
 
-Enemy02* Enemy02::create(const float enemyParam[], const float shotParam[], std::string fileName){
+Enemy02* Enemy02::create(const float enemyParam[], std::string fileName){
     Enemy02 *enemy = new Enemy02();
     
     // 敵本体のパラメータ
     enemy->hitpoint = 1;
     enemy->score = 100;
-    enemy->speed = enemyParam[0];
-    enemy->speedRate = enemyParam[1];
-    enemy->angle = enemyParam[2];
-    enemy->angleRate = enemyParam[3];
     enemy->isAlive = true;
+    enemy->setParam(enemyParam);
     enemy->setTag(4);
     enemy->setName("Enemy02");
     
     // ショットのパラメータ
-    enemy->shotDelay = enemy->shotDelayTmp = shotParam[0];
-    enemy->shotLimit = shotParam[1];
-    enemy->moveDelay = enemy->moveDelayTmp = shotParam[2];
+    enemy->shotDelay = 90;
+    enemy->shotDelayTmp = 60;
+    enemy->shotLimit = 2;
+    enemy->moveDelay = enemy->moveDelayTmp = 1;
     //enemy->moveLimit = shotParam[3];
     
     
